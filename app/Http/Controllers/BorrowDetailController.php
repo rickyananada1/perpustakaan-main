@@ -26,7 +26,7 @@ class BorrowDetailController extends Controller
 
     public function confirm(BorrowDetail $borrowdetail)
     {
-        $borrowdetail->st = 'dikonfirmasi';
+        $borrowdetail->st = 'dikonfirmasi peminjaman';
         $borrowdetail->update();
         return response()->json([
             'alert' => 'success',

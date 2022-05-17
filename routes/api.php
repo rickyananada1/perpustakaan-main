@@ -13,11 +13,14 @@ Route::group(['domain' => ''], function ($router) {
         Route::post('register','Api\AuthController@register');
         Route::post('logout','Api\AuthController@logout');
     });
+    Route::post('borrow/{book}','Api\BorrowController@borrow');
+    Route::patch('extend/{book}','Api\BorrowController@extend');
     Route::patch('request/{id}','Api\BorrowController@request');
     Route::patch('confirm/{id}','Api\BorrowController@confirm');
     Route::patch('return/{id}','Api\BorrowController@return');
     Route::get('book-category/{booksCategory}','Api\BookByCategoryController@index');
-    Route::post('borrow/{book}','Api\BorrowController@borrow');
     Route::apiResource('/books','Api\BookController');
     Route::apiResource('/booksCategory','Api\BookCategoryController');
+    Route::apiResource('/history','Api\HistoryController');
+    Route::apiResource('/gallery','Api\GaleriController');
 });

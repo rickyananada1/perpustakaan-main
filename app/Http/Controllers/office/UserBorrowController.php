@@ -22,6 +22,50 @@ class UserBorrowController extends Controller
         return view('pages.office.userBorrow.main');
     }
 
+    public function confirm(Borrow $borrow)
+    {
+        BorrowDetail::where('id_peminjaman',$borrow->id)->update(['st'=>'dikonfirmasi peminjaman']);
+        $borrow->st = 'dikonfirmasi peminjaman';
+        $borrow->update();
+        return response()->json([
+            'alert' => 'success',
+            'message' => 'Peminjaman Dikonfirmasi',
+        ]);
+    }
+
+    public function borrowed(Borrow $borrow)
+    {
+        BorrowDetail::where('id_peminjaman',$borrow->id)->update(['st'=>'dipinjam']);
+        $borrow->st = 'dipinjam';
+        $borrow->update();
+        return response()->json([
+            'alert' => 'success',
+            'message' => 'Peminjaman Dikonfirmasi',
+        ]);
+    }
+
+    public function acc(Borrow $borrow)
+    {
+        BorrowDetail::where('id_peminjaman',$borrow->id)->update(['st'=>'sudah diperpanjang']);
+        $borrow->st = 'sudah diperpanjang';
+        $borrow->update();
+        return response()->json([
+            'alert' => 'success',
+            'message' => 'Peminjaman Dikonfirmasi',
+        ]);
+    }
+
+    public function return(Borrow $borrow)
+    {
+        BorrowDetail::where('id_peminjaman',$borrow->id)->update(['st'=>'dikembalikan']);
+        $borrow->st = 'dikembalikan';
+        $borrow->update();
+        return response()->json([
+            'alert' => 'success',
+            'message' => 'Peminjaman Dikonfirmasi',
+        ]);
+    }
+
     public function create()
     {
         //

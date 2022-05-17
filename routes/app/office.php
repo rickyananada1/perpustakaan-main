@@ -75,7 +75,10 @@ Route::group(['domain' => ''], function() {
             Route::prefix('user-borrow')->name('user-borrow.')->group(function(){
                 Route::get('index',  [UserBorrowController::class, 'index'])->name('index');
                 Route::patch('confirm/{borrow}',     [UserBorrowController::class, 'confirm'])->name('confirm');
-                Route::patch('return/{borrow}',     [BorrowsController::class, 'return'])->name('return');
+                Route::patch('borrowed/{borrow}',     [UserBorrowController::class, 'borrowed'])->name('borrowed');
+                Route::patch('extend/{borrow}',     [UserBorrowController::class, 'extend'])->name('extend');
+                Route::patch('acc/{borrow}',     [UserBorrowController::class, 'acc'])->name('acc');
+                Route::patch('return/{borrow}',     [UserBorrowController::class, 'return'])->name('return');
                 Route::delete('destroy/{borrow}', [UserBorrowController::class, 'destroy'])->name('destroy');
             });
             Route::prefix('profile')->name('profile.')->group(function(){

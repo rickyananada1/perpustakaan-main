@@ -30,45 +30,45 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($detail as $i => $borrowDetail)
+                    <?php $__currentLoopData = $detail; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $borrowDetail): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                    <td>{{$i+1}}</td>
-                    <td class="text-capitalize">{{$borrowDetail->books->judul}}</td>
-                      <td class="text-capitalize">{{$borrowDetail->books->category->nama_kategori}}</td>
-                      <th class="text-capitalize">{{$borrowDetail->tanggal_pinjam}}</th>
-                      <td class="text-capitalize">{{$borrowDetail->tanggal_pengembalian}}</td>
-                    {{-- lama --}}
-                    @php
+                    <td><?php echo e($i+1); ?></td>
+                    <td class="text-capitalize"><?php echo e($borrowDetail->books->judul); ?></td>
+                      <td class="text-capitalize"><?php echo e($borrowDetail->books->category->nama_kategori); ?></td>
+                      <th class="text-capitalize"><?php echo e($borrowDetail->tanggal_pinjam); ?></th>
+                      <td class="text-capitalize"><?php echo e($borrowDetail->tanggal_pengembalian); ?></td>
+                    
+                    <?php
                       $awal = new DateTime($borrowDetail->tanggal_pinjam);
                       $akhir = new DateTime($borrowDetail->tanggal_pengembalian);
                       $hasil = $awal->diff($akhir);
-                    @endphp
-                    @if($borrowDetail->tanggal_pengembalian == null)
+                    ?>
+                    <?php if($borrowDetail->tanggal_pengembalian == null): ?>
                         <td class="text-center">-</td>
-                    @else
-                        <td>{{ $hasil->format('%a') }} Hari</td>
-                    @endif
-                    @if($borrowDetail->tanggal_pengembalian != null && $hasil->format('%a') > 3)
-                      <td>{{$hasil->format('%a') > 3 ? 'Rp '.number_format(5000) : '' }} </td>
-                    @endif
-                    {{-- pengupload --}}
-                    @if($borrowDetail->updated_by == null)
+                    <?php else: ?>
+                        <td><?php echo e($hasil->format('%a')); ?> Hari</td>
+                    <?php endif; ?>
+                    <?php if($borrowDetail->tanggal_pengembalian != null && $hasil->format('%a') > 3): ?>
+                      <td><?php echo e($hasil->format('%a') > 3 ? 'Rp '.number_format(5000) : ''); ?> </td>
+                    <?php endif; ?>
+                    
+                    <?php if($borrowDetail->updated_by == null): ?>
                         <td class="text-center">-</td>
-                    @else
-                         <td>{{$borrowDetail->updated_by}} </td>
-                    @endif
+                    <?php else: ?>
+                         <td><?php echo e($borrowDetail->updated_by); ?> </td>
+                    <?php endif; ?>
                       <td>
-                        @if($borrowDetail->st == 'menunggu')
-                          <a href="javascript:;" onclick="handle_confirm('{{route('office.borrow-detail.confirm',$borrowDetail->id)}}');" id="tombol-hapus" type="button" class="btn btn-success btn-icon-split btn-sm">
+                        <?php if($borrowDetail->st == 'menunggu'): ?>
+                          <a href="javascript:;" onclick="handle_confirm('<?php echo e(route('office.borrow-detail.confirm',$borrowDetail->id)); ?>');" id="tombol-hapus" type="button" class="btn btn-success btn-icon-split btn-sm">
                               <span class="icon text-white-50">
                                   <i class="fas fa-check"></i>
                               </span>
                               <span class="text">Konfirmasi</span>
                           </a>
-                        @else
+                        <?php else: ?>
 
-                        @endif
-                        <a href="javascript:;" onclick="handle_delete('{{route('office.borrow-detail.destroy',$borrowDetail->id)}}');" id="tombol-hapus" type="button" class="btn btn-danger btn-icon-split btn-sm">
+                        <?php endif; ?>
+                        <a href="javascript:;" onclick="handle_delete('<?php echo e(route('office.borrow-detail.destroy',$borrowDetail->id)); ?>');" id="tombol-hapus" type="button" class="btn btn-danger btn-icon-split btn-sm">
                           <span class="icon text-white-50">
                               <i class="fas fa-trash"></i>
                           </span>
@@ -76,10 +76,10 @@
                       </a>
                       </td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </tbody>
                 </table>
               </div>
             </div>
         </div>
-    </div>
+    </div><?php /**PATH C:\laragon\www\perpustakaan-main\resources\views/pages/office/borrow/show.blade.php ENDPATH**/ ?>

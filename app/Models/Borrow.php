@@ -17,4 +17,7 @@ class Borrow extends Model
     public function detail(){
         return $this->hasMany(BorrowDetail::class,'id_peminjaman','id');
     }
+    public function created_by_name(){
+        return $this->belongsTo(User::class,'created_by','id');
+    }
 }

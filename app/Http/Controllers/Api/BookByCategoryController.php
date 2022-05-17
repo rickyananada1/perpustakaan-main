@@ -17,7 +17,7 @@ class BookByCategoryController extends Controller
 
      public function index(BookCategory $booksCategory)
     {
-        return Book::with('category')->where('kategori_id', $booksCategory->id)->get();
+        return Book::with('category')->where('kategori_id', $booksCategory->id)->paginate(5);
     }
 
 }

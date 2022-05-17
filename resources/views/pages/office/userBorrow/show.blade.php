@@ -51,7 +51,7 @@
                          <td>{{$borrowDetail->updated_by}} </td>
                     @endif
                       <td>
-                        @if($borrowDetail->st == 'pending')
+                        @if($borrowDetail->st == 'menunggu')
                           <a href="javascript:;" onclick="handle_confirm('{{route('office.borrow-detail.confirm',$borrowDetail->id)}}');" id="tombol-hapus" type="button" class="btn btn-success btn-icon-split btn-sm">
                               <span class="icon text-white-50">
                                   <i class="fas fa-check"></i>

@@ -33,14 +33,14 @@
             <span class="text">Ubah</span>
           </a>
           @endif
-          @if($peminjaman->st == 'pending')
+          @if($peminjaman->st == 'menunggu')
             <a href="javascript:;" id="tombol-confirm" type="button" onclick="handle_confirm('{{route('office.borrow.confirm',$peminjaman->id)}}');" class="btn btn-success btn-icon-split btn-sm">
               <span class="icon text-white-50">
                   <i class="fas fa-check"></i>
               </span>
               <span class="text">Konfirmasi</span>
           @endif
-          @if($peminjaman->st == 'dikonfirmasi')
+          @if($peminjaman->st == 'dikonfirmasi peminjaman')
           <a href="javascript:;" id="tombol-kembalikan" type="button" onclick="handle_confirm('{{route('office.borrow.return',$peminjaman->id)}}');" class="btn btn-primary btn-icon-split btn-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-check"></i>

@@ -59,7 +59,7 @@ class BorrowsController extends Controller
         $borrow = new Borrow;
         $borrow->id_user = $request->users;
         $borrow->tanggal = now();
-        $borrow->st = 'pending';
+        $borrow->st = 'dipinjam';
         $borrow->created_at = now();
         $borrow->created_by = Auth::user()->id;
         $borrow->updated_at = now();
@@ -69,7 +69,7 @@ class BorrowsController extends Controller
             $detail->id_peminjaman = $borrow->id;
             $detail->id_buku = $value;
             $detail->tanggal_pinjam = now();
-            $detail->st = 'pending';
+            $detail->st = 'dipinjam';
             $detail->save();
         }
         return response()->json([
@@ -86,12 +86,12 @@ class BorrowsController extends Controller
 
     public function confirm(Borrow $borrow)
     {
-        BorrowDetail::where('id_peminjaman',$borrow->id)->update(['st'=>'dikonfirmasi']);
-        $borrow->st = 'dikonfirmasi';
+        BorrowDetail::where('id_peminjaman',$borrow->id)->update(['st'=>'dikonfirmasi peminjaman']);
+        $borrow->st = 'dikonfirmasi peminjaman';
         $borrow->update();
         return response()->json([
             'alert' => 'success',
-            'message' => 'Peminjaman Tersimpan',
+            'message' => 'Peminjaman Dikonfirmasi',
         ]);
     }
 
