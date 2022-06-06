@@ -6,7 +6,8 @@
             <th>No</th>
             <th>Foto</th>
             <th>Keterangan</th>
-            <th>Aksi</th>
+            <th>Edit Data</th>
+            <th>Hapus Data</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +23,8 @@
                             </span>
                             <span class="text">Ubah</span>
                         </a>
+                    </td>
+                    <td>
                         <a href="javascript:void(0);" onclick="handle_delete('{{route('office.galeri.destroy',$galeri->id)}}')" class="btn btn-danger btn-icon-split btn-sm">
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>

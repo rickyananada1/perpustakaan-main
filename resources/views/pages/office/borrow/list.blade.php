@@ -7,7 +7,10 @@
             <th>Nama Peminjam</th>
             <th>Tanggal Peminjaman</th>
             <th>Status</th>
-            <th>Aksi</th>
+            <th>Lihat Data</th>
+            <th>Edit Data</th>
+            <th>Konfirmasi Data</th>
+            <th>Hapus Data</th>
           </tr>
         </thead>
         <tbody>
@@ -25,35 +28,44 @@
               </span>
               <span class="text">Lihat</span>
           </a>
-          @if($peminjaman->st != 'dikembalikan')
-          <a href="javascript:;" id="tombol-ubah" type="button" onclick="load_input('{{route('office.borrow.edit',$peminjaman->id)}}');" class="btn btn-warning btn-icon-split btn-sm">
-            <span class="icon text-white-50">
-                <i class="fas fa-pen"></i>
-            </span>
-            <span class="text">Ubah</span>
-          </a>
-          @endif
-          @if($peminjaman->st == 'menunggu')
-            <a href="javascript:;" id="tombol-confirm" type="button" onclick="handle_confirm('{{route('office.borrow.confirm',$peminjaman->id)}}');" class="btn btn-success btn-icon-split btn-sm">
+          </td>
+          <td>
+            @if($peminjaman->st != 'dikembalikan')
+            <a href="javascript:;" id="tombol-ubah" type="button" onclick="load_input('{{route('office.borrow.edit',$peminjaman->id)}}');" class="btn btn-warning btn-icon-split btn-sm">
+              <span class="icon text-white-50">
+                  <i class="fas fa-pen"></i>
+              </span>
+              <span class="text">Ubah</span>
+            </a>
+            @else
+            <span class="text">Tidak Dapat Di Edit</span>
+            @endif
+          </td>
+          <td>
+            @if($peminjaman->st == 'menunggu')
+              <a href="javascript:;" id="tombol-confirm" type="button" onclick="handle_confirm('{{route('office.borrow.confirm',$peminjaman->id)}}');" class="btn btn-success btn-icon-split btn-sm">
+                <span class="icon text-white-50">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span class="text">Konfirmasi</span>
+            @elseif($peminjaman->st == 'dikonfirmasi peminjaman')
+            <a href="javascript:;" id="tombol-kembalikan" type="button" onclick="handle_confirm('{{route('office.borrow.return',$peminjaman->id)}}');" class="btn btn-primary btn-icon-split btn-sm">
               <span class="icon text-white-50">
                   <i class="fas fa-check"></i>
               </span>
-              <span class="text">Konfirmasi</span>
-          @endif
-          @if($peminjaman->st == 'dikonfirmasi peminjaman')
-          <a href="javascript:;" id="tombol-kembalikan" type="button" onclick="handle_confirm('{{route('office.borrow.return',$peminjaman->id)}}');" class="btn btn-primary btn-icon-split btn-sm">
-            <span class="icon text-white-50">
-                <i class="fas fa-check"></i>
-            </span>
-            <span class="text">Dikembalikan</span>
-          </a>
-          @endif
-          <a href="javascript:;" id="tombol-hapus" type="button"  onclick="handle_delete('{{route('office.borrow.destroy',$peminjaman->id)}}');" class="btn btn-danger btn-icon-split btn-sm">
-            <span class="icon text-white-50">
-                <i class="fas fa-trash"></i>
-            </span>
-            <span class="text">Hapus</span>
-          </a>
+              <span class="text">Dikembalikan</span>
+            </a>
+            @else
+            <span class="text">Tidak Ada Konfirmasi</span>
+            @endif
+          </td>
+          <td>
+            <a href="javascript:;" id="tombol-hapus" type="button"  onclick="handle_delete('{{route('office.borrow.destroy',$peminjaman->id)}}');" class="btn btn-danger btn-icon-split btn-sm">
+              <span class="icon text-white-50">
+                  <i class="fas fa-trash"></i>
+              </span>
+              <span class="text">Hapus</span>
+            </a>
           </td>
           </tr>
             @endforeach

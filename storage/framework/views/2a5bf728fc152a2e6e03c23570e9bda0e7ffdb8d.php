@@ -1,4 +1,9 @@
-<x-OfficeLayout title="Kategori Buku">
+<?php if (isset($component)) { $__componentOriginal4b9fd5df344ded1279b89d3c3f61127b178f3274 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\OfficeLayout::class, ['title' => 'Kategori Buku']); ?>
+<?php $component->withName('OfficeLayout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
     <div id="content_list">
         <div class="container-fluid">
             <!-- Page Heading -->
@@ -10,7 +15,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Data Kategori Buku</h6>
                 </div>
                 <div class="card-body">
-                        <a href="javascript:void(0);" onclick="handle_open_modal('{{route('office.book-category.create')}}','#memberModal','#contentMemberModal');" class="btn mb-3 btn-primary btn-icon-split btn-sm">
+                        <a href="javascript:void(0);" onclick="handle_open_modal('<?php echo e(route('office.book-category.create')); ?>','#memberModal','#contentMemberModal');" class="btn mb-3 btn-primary btn-icon-split btn-sm">
                         <span class="icon text-white-50">
                             <i class="fas fa-plus"></i>
                         </span>
@@ -21,7 +26,7 @@
             </div>
         </div>
     </div>
-@section('custom_js')
+<?php $__env->startSection('custom_js'); ?>
 <script>
   $(function() {
         load_list(1);
@@ -44,5 +49,10 @@
         }
     });
 </script>
-@endsection
-</x-OfficeLayout>
+<?php $__env->stopSection(); ?>
+ <?php if (isset($__componentOriginal4b9fd5df344ded1279b89d3c3f61127b178f3274)): ?>
+<?php $component = $__componentOriginal4b9fd5df344ded1279b89d3c3f61127b178f3274; ?>
+<?php unset($__componentOriginal4b9fd5df344ded1279b89d3c3f61127b178f3274); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?><?php /**PATH D:\KULIAH\DICODING\laragon\www\perpustakaan\resources\views/pages/office/category/main.blade.php ENDPATH**/ ?>

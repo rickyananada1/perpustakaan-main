@@ -1,4 +1,4 @@
-@section('css')
+<?php $__env->startSection('css'); ?>
 <style>
     #team {
     padding: 60px 0;
@@ -74,8 +74,13 @@
     margin: 0 2px;
 }
 </style>
-@endsection
-<x-OfficeLayout title="Tentang">
+<?php $__env->stopSection(); ?>
+<?php if (isset($component)) { $__componentOriginal4b9fd5df344ded1279b89d3c3f61127b178f3274 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\OfficeLayout::class, ['title' => 'Tentang']); ?>
+<?php $component->withName('OfficeLayout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
     <div class="container-fluid">
         <!-- Basic Card Example -->
             <div class="card shadow mb-4">
@@ -90,7 +95,7 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="member">
                                       <div class="member-img">
-                                          <img src="{{asset('offices/img/havel.jpeg')}}" class="img-fluid" alt="" style="width: 70%;height:400px;">
+                                          <img src="<?php echo e(asset('offices/img/havel.jpeg')); ?>" class="img-fluid" alt="" style="width: 70%;height:400px;">
                                       </div>
                                         <div class="member-info">
                                             <h4>Pakhomios Havel</h4>
@@ -108,7 +113,7 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="member">
                                       <div class="member-img">
-                                          <img src="{{asset('offices/img/Ricky.png')}}" class="img-fluid" alt="" style="width: 70%;height:400px;">
+                                          <img src="<?php echo e(asset('offices/img/Ricky.png')); ?>" class="img-fluid" alt="" style="width: 70%;height:400px;">
                                       </div>
                                         <div class="member-info">
                                             <h4>Ricky Ananda P. Sitorus</h4>
@@ -126,7 +131,7 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="member">
                                       <div class="member-img">
-                                          <img src="{{asset('offices/img/fero.jpeg')}}" class="img-fluid" alt="" style="width: 70%;height:400px;">
+                                          <img src="<?php echo e(asset('offices/img/fero.jpeg')); ?>" class="img-fluid" alt="" style="width: 70%;height:400px;">
                                       </div>
                                         <div class="member-info">
                                             <h4>Feronika Simanjuntak</h4>
@@ -144,7 +149,7 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="member">
                                       <div class="member-img">
-                                          <img src="{{asset('offices/img/scintya.jpeg')}}" class="img-fluid" alt="" style="width: 70%;height:400px;">
+                                          <img src="<?php echo e(asset('offices/img/scintya.jpeg')); ?>" class="img-fluid" alt="" style="width: 70%;height:400px;">
                                       </div>
                                         <div class="member-info">
                                             <h4>Scintya Tobing</h4>
@@ -177,4 +182,9 @@
                     </div>
                 </div>
     </div>
-</x-OfficeLayout>
+ <?php if (isset($__componentOriginal4b9fd5df344ded1279b89d3c3f61127b178f3274)): ?>
+<?php $component = $__componentOriginal4b9fd5df344ded1279b89d3c3f61127b178f3274; ?>
+<?php unset($__componentOriginal4b9fd5df344ded1279b89d3c3f61127b178f3274); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?><?php /**PATH D:\KULIAH\DICODING\laragon\www\perpustakaan\resources\views/pages/office/info.blade.php ENDPATH**/ ?>

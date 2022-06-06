@@ -1,12 +1,17 @@
-<x-OfficeLayout title="Dashboard">
-        @section('custom_css')
+<?php if (isset($component)) { $__componentOriginal4b9fd5df344ded1279b89d3c3f61127b178f3274 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\OfficeLayout::class, ['title' => 'Dashboard']); ?>
+<?php $component->withName('OfficeLayout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+        <?php $__env->startSection('custom_css'); ?>
         <style>
           #chartdiv {
             width: 100%;
             height: 500px;
           }
           </style>
-        @endsection
+        <?php $__env->stopSection(); ?>
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
@@ -19,7 +24,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Welcome Message !!</h6>
                 </div>
                 <div class="card-body">
-                      <p>Selamat Datang Admin <b class="text-uppercase ">{{ Auth::user()->name }}, </b></p>
+                      <p>Selamat Datang Admin <b class="text-uppercase "><?php echo e(Auth::user()->name); ?>, </b></p>
                       <p class="mb-0">Sistem Informasi Manajemen Perpustakaan "Lumban Dolok" <br> Jangan Berikan Email dan Password Anda pada Siapapun</p>
                 </div>
             </div>
@@ -33,7 +38,7 @@
                           <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Pengguna</div>
                           <div class="h5 mb-0 font-weight-bold text-gray-800">
-                              {{number_format($user)}} 
+                              <?php echo e(number_format($user)); ?> 
                               Orang</div>
                           </div>
                           <div class="col-auto">
@@ -52,7 +57,7 @@
                           <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah Peminjam</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                {{number_format($borrowers)}} 
+                                <?php echo e(number_format($borrowers)); ?> 
                                 Orang</div>
                           </div>
                           <div class="col-auto">
@@ -71,18 +76,18 @@
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Judul Buku</div>
                             <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
-                                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{number_format($book)}} judul</div>
+                                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo e(number_format($book)); ?> judul</div>
                                     </div>
                                     <div class="col">
                                       <div class="progress progress-sm mr-2">
                                         <div class="progress-bar bg-info" role="progressbar" 
-                                        style="width: {{$book}}%"
+                                        style="width: <?php echo e($book); ?>%"
                                         aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                       </div>
                                     </div>
                                   </div>
-                                    {{number_format($newBook)}} Buku Baru
-                                    {{number_format($oldBook)}} Buku Bekas
+                                    <?php echo e(number_format($newBook)); ?> Buku Baru
+                                    <?php echo e(number_format($oldBook)); ?> Buku Bekas
                                 </div>
                           <div class="col-auto">
                             <i class="fas fa-book fa-3x text-gray-300"></i>
@@ -98,7 +103,7 @@
                         <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Total Seluruh Buku</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{number_format($totalbook)}} buah</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo e(number_format($totalbook)); ?> buah</div>
                           </div>
                           <div class="col-auto">
                             <i class="fas fa-book-open fa-solid fa-3x text-gray-300"></i>
@@ -119,10 +124,10 @@
                   <div id="chartdiv"></div>
                 </div> 
             </div> 
-        @section('custom_js')
-        <script src="{{asset('offices/amcharts4/core.js')}}"></script>
-        <script src="{{asset('offices/amcharts4/charts.js')}}"></script>
-        <script src="{{asset('offices/amcharts4/themes/animated.js')}}"></script>
+        <?php $__env->startSection('custom_js'); ?>
+        <script src="<?php echo e(asset('offices/amcharts4/core.js')); ?>"></script>
+        <script src="<?php echo e(asset('offices/amcharts4/charts.js')); ?>"></script>
+        <script src="<?php echo e(asset('offices/amcharts4/themes/animated.js')); ?>"></script>
           <script>
             am4core.ready(function() {
             // Themes begin
@@ -133,7 +138,7 @@
             var chart = am4core.create("chartdiv", am4charts.XYChart);
 
             // Add data
-            chart.data = {!!$grafik!!};
+            chart.data = <?php echo $grafik; ?>;
 
             // Create axes
 
@@ -165,5 +170,10 @@
 
             }); // end am4core.ready()
           </script>
-        @endsection
-</x-OfficeLayout>
+        <?php $__env->stopSection(); ?>
+ <?php if (isset($__componentOriginal4b9fd5df344ded1279b89d3c3f61127b178f3274)): ?>
+<?php $component = $__componentOriginal4b9fd5df344ded1279b89d3c3f61127b178f3274; ?>
+<?php unset($__componentOriginal4b9fd5df344ded1279b89d3c3f61127b178f3274); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?><?php /**PATH D:\KULIAH\DICODING\laragon\www\perpustakaan\resources\views/pages/office/dashboard.blade.php ENDPATH**/ ?>

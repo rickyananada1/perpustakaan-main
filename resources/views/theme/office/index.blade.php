@@ -3,6 +3,7 @@
 @include('theme.office.head')
 <body id="page-top">
 @include('theme.office.aside')
+@yield('css')
 <main class="py-4">
     {{$slot}}
 </main>

@@ -1,4 +1,4 @@
-<x-OfficeLayout title="Data Admin">
+<x-OfficeLayout title="Profile">
     <div class="table-responsive">
         <div class="container-fluid">
             <!-- Page Heading -->

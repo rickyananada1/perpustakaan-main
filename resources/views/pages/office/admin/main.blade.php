@@ -8,7 +8,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Admin 2.0</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Admin</h6>
                 </div>
                 <div class="card-body">
                     <a href="javascript:void(0);" onclick="load_input('{{route('office.admin.create')}}')" class="btn mb-3 btn-primary btn-icon-split btn-sm" >

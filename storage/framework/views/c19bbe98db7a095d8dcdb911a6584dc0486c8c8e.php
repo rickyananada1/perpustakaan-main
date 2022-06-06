@@ -1,4 +1,9 @@
-<x-OfficeLayout title="Galeri">
+<?php if (isset($component)) { $__componentOriginal4b9fd5df344ded1279b89d3c3f61127b178f3274 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\OfficeLayout::class, ['title' => 'Galeri']); ?>
+<?php $component->withName('OfficeLayout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
     <div id="content_list">
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -11,7 +16,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Galeri</h6>
                 </div>
                 <div class="card-body">
-                    <a href="javascript:void(0);" onclick="load_input('{{route('office.galeri.create')}}')" class="btn mb-3 btn-primary btn-icon-split btn-sm" >
+                    <a href="javascript:void(0);" onclick="load_input('<?php echo e(route('office.galeri.create')); ?>')" class="btn mb-3 btn-primary btn-icon-split btn-sm" >
                         <span class="icon text-white-50">
                             <i class="fas fa-plus"></i>
                         </span>
@@ -26,7 +31,7 @@
     <div id="content_input"></div>
         <!-- End of Main Content -->
     </div>
-    @section('custom_js')
+    <?php $__env->startSection('custom_js'); ?>
         <script type="text/javascript">
             $(function() {
                 load_list(1);
@@ -49,8 +54,8 @@
                 }
             });
         </script>
-    @endsection
-    @section('custom_css')
+    <?php $__env->stopSection(); ?>
+    <?php $__env->startSection('custom_css'); ?>
     <style>
         .labeled-form{
             float: left;
@@ -65,5 +70,10 @@
             border: 5px black
         }
     </style>    
-@endsection
-</x-OfficeLayout>
+<?php $__env->stopSection(); ?>
+ <?php if (isset($__componentOriginal4b9fd5df344ded1279b89d3c3f61127b178f3274)): ?>
+<?php $component = $__componentOriginal4b9fd5df344ded1279b89d3c3f61127b178f3274; ?>
+<?php unset($__componentOriginal4b9fd5df344ded1279b89d3c3f61127b178f3274); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?><?php /**PATH D:\KULIAH\DICODING\laragon\www\perpustakaan\resources\views/pages/office/gallery/main.blade.php ENDPATH**/ ?>
