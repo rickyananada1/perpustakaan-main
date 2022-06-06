@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <a href="javascript:void(0);" onclick="load_input('{{route('office.admin.create')}}')" class="btn mb-3 btn-primary btn-icon-split btn-sm" >
                         <span class="icon text-white-50">
-                            <i class="fas fa-check"></i>
+                            <i class="fas fa-plus"></i>
                         </span>
                         <span class="text">Tambah Data Admin</span>
                     </a>

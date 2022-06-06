@@ -16,6 +16,7 @@ class BorrowDetailResource extends JsonResource
     {
         return [
             'buku_id' => $this->id_buku,
+            'gambar' => asset('storage/' . $this->books->foto),
             'judul_buku' => $this->books->judul,
             'tanggal_peminjaman' => $this->tanggal_pinjam,
             'denda' => $this->denda,

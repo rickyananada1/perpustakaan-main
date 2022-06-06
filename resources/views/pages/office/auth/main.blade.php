@@ -19,7 +19,7 @@
             <div class="fv-row mb-10">
               <div class="d-flex flex-stack mb-2">
                 <label class="form-label fw-bolder text-dark fs-6 mb-0" style="font-family: Nunito">Kata Sandi</label>
-                <a href="javascript:void(0);" onclick="auth_content('forgot_page');" class="link-primary fs-6 fw-bolder">Lupa Kata Sandi ?</a>
+                <a href="{{route('office.auth.forgot')}}" class="link-primary fs-6 fw-bolder">Lupa Kata Sandi ?</a>
               </div>
               <input class="form-control form-control-lg form-control-solid br10" type="password" placeholder="Masukan Kata Sandi Anda" name="password" id="password_login" autocomplete="off" />
             </div>
@@ -36,31 +36,6 @@
           </form>
         </div>
         
-        {{-- Forgot Page --}}
-        <div id="forgot_page">
-          <div class="w-lg-500px bg-white rounded shadow-sm p-10 p-lg-15 mx-auto">
-              <form class="form w-100" novalidate="novalidate" id="forgot_form">
-                  <div class="text-center mb-10">
-                    <h1 class="text-dark mb-3">Lupa password ?</h1>
-                      <div class="text-gray-400 fw-bold fs-4">Masukkan email yang ingin di reset</div>
-                  </div>
-                  <div class="fv-row mb-10">
-                      <label class="form-label fw-bolder text-gray-900 fs-6">Email</label>
-                      <input class="form-control form-control-solid br10" type="email" placeholder="" id="email_forgot" placeholder="Masukan Alamat Email Anda" name="email" autocomplete="off" />
-                  </div>
-                  <div class="d-flex flex-wrap justify-content-center pb-lg-0">
-                      <button type="button" id="tombol_lupa" class="btn btn-lg br10 btn-primary fw-bolder me-4">
-                          <span class="indicator-label">Kirim</span>
-                        <span class="indicator-progress">Please wait...
-                          <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                        </span>
-                      </button>
-                      <a href="javascript:;" onclick="auth_content('login_page');" class="btn btn-lg btn-light-primary fw-bolder br10">Batal</a>
-                  </div>
-              </form>
-          </div>
-      </div>
-
       </div>
     </div>
   </div>

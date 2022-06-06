@@ -14,7 +14,7 @@
                     @if(Auth::user()->role == "superadmin")
                     <a href="javascript:void(0);" onclick="handle_open_modal('{{route('office.employee.create')}}','#employeeModal','#contentEmployeeModal')" class="btn mb-3 btn-primary btn-icon-split btn-sm">
                         <span class="icon text-white-50">
-                            <i class="fas fa-check"></i>
+                            <i class="fas fa-plus"></i>
                         </span>
                         <span class="text">Tambah Data Pustakawan</span>
                     </a>

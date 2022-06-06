@@ -16,7 +16,7 @@
           @endphp
           <tr>
           @foreach ($collection as $i => $peminjaman)
-          <td>{{$i+1}}</td>
+          <td>{{$collection->firstItem() + $i}}</td>
           <td class="text-capitalize">{{$peminjaman->user->name}}</td>
           <td class="text-capitalize">{{$peminjaman->tanggal}}</td>
           <th class="text-capitalize">{{$peminjaman->st}}</th>

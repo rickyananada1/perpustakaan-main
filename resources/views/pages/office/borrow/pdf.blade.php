@@ -33,9 +33,9 @@
       @foreach ($data as $item)    
       <tr>
         <td>{{ $i++ }}</td>
-        <td>{{ $item->books->judul}}</td>
-        <td>{{ $item->borrow->user->name}}</td>
-        <td>{{  Carbon\Carbon::parse($item->tanggal_pinjam)->format('Y-m-d')}}</td>
+        <td>{{ $item->judul}}</td>
+        <td>{{ $item->user->name}}</td>
+        <td>{{  Carbon\Carbon::parse($item->tangal_pinjam)->format('Y-m-d')}}</td>
         @if(!$item->tanggal_pengembalian)
         <td>NULL</td>
         @else

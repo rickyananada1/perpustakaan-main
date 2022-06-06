@@ -21,7 +21,7 @@
           <tbody>
             @foreach ($collection as $i => $book)
               <tr>
-                <td>{{$i+1}}</td>
+                <td>{{$collection->firstItem() + $i}}</td>
                 <td><img src="{{$book->image}}" style="max-width:200px;max-height:200px;"></td>
                 <td>{{$book->judul}}</td>
                 <td>{{$book->pengarang}}</td>
@@ -34,9 +34,9 @@
                 <td>{{date("Y-m-d", strtotime($book->created_at))}}</td>
                 <td>{{$book->user->name}}</td>
                 <td>
-                  <a href="javascript:void(0);" onclick="handle_open_modal('{{route('office.books.edit',$book->id)}}','#bookModal','#contentBookModal');" class="btn btn-success btn-icon-split btn-sm">
+                  <a href="javascript:void(0);" onclick="handle_open_modal('{{route('office.books.edit',$book->id)}}','#bookModal','#contentBookModal');" class="btn btn-warning btn-icon-split btn-sm">
                     <span class="icon text-white-50">
-                            <i class="fas fa-check"></i>
+                            <i class="fas fa-pen"></i>
                     </span>
                     <span class="text">Ubah</span>
                   </a>

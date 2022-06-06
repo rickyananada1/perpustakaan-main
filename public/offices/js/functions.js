@@ -83,12 +83,8 @@ function handle_save(tombol, form, url, method){
                 setTimeout(function () {
                     $(tombol).prop("disabled", false);
                         $(tombol).html('Mohon tunggu');
-                        if(response.route == null){
-                            main_content('content_list');
-                            load_list(1);
-                        }else{
-                            location.href = response.route;
-                        }
+                        main_content('content_list');
+                        load_list(1);
                 }, 2000);
             } else {
                 error_message(response.message);

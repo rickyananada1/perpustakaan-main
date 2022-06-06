@@ -20,16 +20,16 @@
           @endphp
           @foreach ($collection as $i => $member)
           <tr>
-            <td>{{$i+1}}</td>
+            <td>{{$collection->firstItem() + $i}}</td>
             <td class="text-capitalize">{{$member->name}}</td>
             <td>{{$member->email}}</td>
             <td>{{$member->no_hp}}</td>
             <td>{{$member->alamat}}</td>
             <td>{{$member->created_at->diffForHumans()}}</td>
             <td>
-              <a href="javascript:void(0)" onclick="handle_open_modal('{{route('office.member.edit',$member->id)}}','#memberModal','#contentMemberModal')"class="btn btn-success btn-icon-split btn-sm">
+              <a href="javascript:void(0)" onclick="handle_open_modal('{{route('office.member.edit',$member->id)}}','#memberModal','#contentMemberModal')"class="btn btn-warning btn-icon-split btn-sm">
                   <span class="icon text-white-50">
-                      <i class="fas fa-check"></i>
+                      <i class="fas fa-pen"></i>
                   </span>
                   <span class="text">Ubah</span>
               </a>

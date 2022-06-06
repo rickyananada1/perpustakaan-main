@@ -1,8 +1,8 @@
 <?php
  
 namespace App\Exports;
- 
-use App\Models\BorrowDetail;
+
+use App\Models\Borrow;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -16,7 +16,11 @@ class ExcelExport implements FromView,WithHeadings
     */
     public function view():View
     {
-        $data = BorrowDetail::get();
+        $data = Borrow::select('peminjaman.*','detail_peminjaman.*','buku.*','users.*')->join('users','peminjaman.created_by','=','users.id')
+        ->join('detail_peminjaman','peminjaman.id','=','detail_peminjaman.id_peminjaman')
+        ->join('buku','buku.id','=','detail_peminjaman.id_buku')
+        ->where('users.role','!=','member')
+        ->orderBy('peminjaman.created_at','DESC')->get();
         return view('pages.office.borrow.pdf',compact('data'));
     }
     public function headings(): array

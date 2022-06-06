@@ -20,7 +20,7 @@
             @foreach ($collection as $i => $user)
             <tr>
                 @if($user->name == Auth::user()->name)
-                    <td><b>{{$i+1}}</b></td>
+                    <td><b>{{$collection->firstItem() + $i}}</b></td>
                     <td class="text-capitalize"> <b>{{$user->name}}</b></td>
                     <td><b>{{$user->email}}</b></td>
                     <td><b>{{$user->no_hp}}</b></td>
@@ -29,7 +29,7 @@
                     <td></td>
                     <td></td>
                     @else
-                    <td>{{$i+1}}</td>
+                    <td>{{$collection->firstItem() + $i}}</td>
                     <td class="text-capitalize">{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->no_hp}}</td>
@@ -37,9 +37,9 @@
                     <td>{{$user->created_at->isoFormat('dddd, D MMMM Y')}}</td>
                     <td>
                         @if($user->role == 'admin')
-                            <a href="javascript:void(0)" onclick="load_input('{{route('office.admin.edit',$user->id)}}')"class="btn btn-success btn-icon-split btn-sm">
+                            <a href="javascript:void(0)" onclick="load_input('{{route('office.admin.edit',$user->id)}}')"class="btn btn-warning btn-icon-split btn-sm">
                                 <span class="icon text-white-50">
-                                    <i class="fas fa-check"></i>
+                                    <i class="fas fa-pen"></i>
                                 </span>
                                 <span class="text">Ubah</span>
                             </a>

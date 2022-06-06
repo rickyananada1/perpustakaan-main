@@ -20,23 +20,23 @@
             @endphp
             @foreach ($collection as $i => $user)
             @if($user->name == Auth::user()->name)
-                <td><b>{{$i+1}}</b></td>
+                <td><b>{{$collection->firstItem() + $i}}</b></td>
                 <td class="text-capitalize"> <b>{{$user->name}}</b></td>
                 <td><b>{{$user->email}}</b></td>
                 <td><b>{{$user->no_hp}}</b></td>
                 <td><b>{{$user->created_at->isoFormat('dddd, D MMMM Y')}}</b></td>
             @else
             <tr>
-                <td>{{$i+1}}</td>
+                <td>{{$collection->firstItem() + $i}}</td>
                 <td class="text-capitalize">{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->no_hp}}</td>
                 <td>{{$user->created_at->isoFormat('dddd, D MMMM Y')}}</td>
                 @if(Auth::user()->role == "superadmin")
                     <td>
-                        <a href="javascript:void(0)" onclick="handle_open_modal('{{route('office.employee.edit',$user->id)}}','#employeeModal','#contentEmployeeModal')"class="btn btn-success btn-icon-split btn-sm">
+                        <a href="javascript:void(0)" onclick="handle_open_modal('{{route('office.employee.edit',$user->id)}}','#employeeModal','#contentEmployeeModal')"class="btn btn-warning btn-icon-split btn-sm">
                             <span class="icon text-white-50">
-                                <i class="fas fa-check"></i>
+                                <i class="fas fa-pen"></i>
                             </span>
                             <span class="text">Ubah</span>
                         </a>

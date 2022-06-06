@@ -1,7 +1,6 @@
 @if($collection->count() > 0)
 <div class="row">
     @foreach ($collection as $kategori)
-        <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
@@ -29,7 +28,6 @@
             </div>
             </div>
         </div> 
-        {{-- end card --}}
         @endforeach
     </div> 
     {{ $collection->links('vendor.pagination.bootstrap-4') }}

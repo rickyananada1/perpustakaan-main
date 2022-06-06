@@ -12,13 +12,13 @@
         <tbody>
             @foreach ($collection as $i => $galeri)
             <tr>
-                    <td>{{$i+1}}</td>
+                    <td>{{$collection->firstItem() + $i}}</td>
                     <td><img src="{{$galeri->image}}" alt="galeri" style="max-width:200px;max-height:150px;"></td>
                     <td>{{$galeri->keterangan}}</td>
                     <td>
-                        <a href="javascript:void(0)" onclick="load_input('{{route('office.galeri.edit',$galeri->id)}}')"class="btn btn-success btn-icon-split btn-sm">
+                        <a href="javascript:void(0)" onclick="load_input('{{route('office.galeri.edit',$galeri->id)}}')"class="btn btn-warning btn-icon-split btn-sm">
                             <span class="icon text-white-50">
-                                <i class="fas fa-check"></i>
+                                <i class="fas fa-pen"></i>
                             </span>
                             <span class="text">Ubah</span>
                         </a>

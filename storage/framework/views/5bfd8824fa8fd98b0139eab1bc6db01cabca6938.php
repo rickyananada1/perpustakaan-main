@@ -32,6 +32,21 @@
                     </a>
                 </div>
                 <div class="card-body">
+                    <a href="<?php echo e(route('office.user-borrow.request_download_pdf')); ?>"class="btn btn-danger mb-3 btn-icon-split btn-sm" >
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Cetak Data Peminjam (PDF)</span>
+                    </a>
+                    <a href="<?php echo e(route('office.user-borrow.request_download_excel')); ?>"class="btn btn-warning mb-3 btn-icon-split btn-sm" >
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Cetak Data Peminjam (Excel)</span>
+                    </a>
+                    <div id="list_result"></div>
+                </div>
+                <div class="card-body">
                     <div id="list_result"></div>
                 </div>
             </div>

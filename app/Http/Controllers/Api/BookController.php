@@ -14,7 +14,7 @@ class BookController extends Controller
     // use ReplyJson;
     public function __construct()
     { 
-        $this->middleware('auth:api',['except'=>['index']]);
+        $this->middleware('auth:api');
         // return auth()->shouldUse('api');
     }
 

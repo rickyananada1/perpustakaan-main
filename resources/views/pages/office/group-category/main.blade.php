@@ -4,6 +4,21 @@
 <div id="content_list">
     <h1 class="h3 mb-2 text-gray-800">Data Buku</h1>
     <p class="mb-4">Berikut merupakan data buku berdasarkan kategori buku di perpustakaan Lumban Dolok</p>
+    <div class="card-body">
+        <a href="{{ route('office.books.request_download_pdf')}}"class="btn btn-danger mb-3 btn-icon-split btn-sm" >
+            <span class="icon text-white-50">
+                <i class="fas fa-check"></i>
+            </span>
+            <span class="text">Cetak Data Semua Buku (PDF)</span>
+        </a>
+        <a href="{{ route('office.books.request_download_excel')}}"class="btn btn-warning mb-3 btn-icon-split btn-sm" >
+            <span class="icon text-white-50">
+                <i class="fas fa-check"></i>
+            </span>
+            <span class="text">Cetak Data Semua Buku (Excel)</span>
+        </a>
+        <div id="list_result"></div>
+    </div>
     <div id="list_result"></div>
 </div>
 @section('custom_js')

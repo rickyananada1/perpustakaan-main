@@ -15,7 +15,7 @@
               <div class="card-body">
                    <a href="javascript:void(0);" onclick="handle_open_modal('{{route('office.member.create')}}','#memberModal','#contentMemberModal')" class="btn mb-3 btn-primary btn-icon-split btn-sm">
                       <span class="icon text-white-50">
-                          <i class="fas fa-check"></i>
+                          <i class="fas fa-plus"></i>
                       </span>
                       <span class="text">Tambah Data Pengguna</span>
                   </a>

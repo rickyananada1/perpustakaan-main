@@ -7,6 +7,9 @@ use App\Models\Borrow;
 use App\Models\BorrowDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Exports\ExcelUserBorrow;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class UserBorrowController extends Controller
 {
@@ -89,5 +92,20 @@ class UserBorrowController extends Controller
     public function destroy(Borrow $borrow)
     {
         //
+    }
+
+    public static function pdfDownload(){
+        $data = Borrow::select('peminjaman.*','detail_peminjaman.*','buku.*','users.*')
+        ->join('users','peminjaman.created_by','=','users.id')
+        ->join('detail_peminjaman','peminjaman.id','=','detail_peminjaman.id_peminjaman')
+        ->join('buku','buku.id','=','detail_peminjaman.id_buku')
+        ->where('users.role','=','member')
+        ->orderBy('peminjaman.created_at','DESC')->get();
+        $pdf = PDF::loadView('pages.office.userBorrow.pdf',compact('data'));
+        return $pdf->download('Data Peminjaman Buku.pdf');
+    }
+
+    public static function excelDownload(){
+        return Excel::download(new ExcelUserBorrow, 'Data Peminjaman Buku.csv',null,["ID","Judul"]);
     }
 }

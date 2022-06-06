@@ -25,7 +25,7 @@
                         <div class="card-body">
                           <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Pengguna</div>
+                              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Member</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 <?php echo e(number_format($user)); ?> 
                                 Orang</div>
@@ -46,7 +46,7 @@
                             <div class="col mr-2">
                               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah Peminjam</div>
                               <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                  <?php echo e(number_format($borrowers)); ?> 
+                                  
                                   Orang</div>
                             </div>
                             <div class="col-auto">
@@ -65,7 +65,7 @@
                               <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Judul Buku</div>
                               <div class="row no-gutters align-items-center">
                                       <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo e(number_format($book)); ?> judul</div>
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo e(number_format($book)); ?> buah</div>
                                       </div>
                                       <div class="col">
                                         <div class="progress progress-sm mr-2">

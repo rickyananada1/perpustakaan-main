@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\office;
 
+use App\Exports\ExcelBookExport;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\BookCategory;
@@ -12,6 +13,9 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Capsule\Manager;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
+
 class BookController extends Controller
 {
     public function index(Request $request,$id)
@@ -224,5 +228,15 @@ class BookController extends Controller
             'alert' => 'success',
             'message' => 'Buku ' . $book->judul . ' Terhapus',
         ]);
+    }
+
+    public static function pdfDownload(){
+        $data = Book::get();
+        $pdf = PDF::loadView('pages.office.book.pdf',compact('data'))->setPaper('a4', 'landscape');
+        return $pdf->download('Data Buku.pdf');
+    }
+
+    public static function excelDownload(){
+        return Excel::download(new ExcelBookExport, 'Data Buku.csv',null,["ID","Judul"]);
     }
 }

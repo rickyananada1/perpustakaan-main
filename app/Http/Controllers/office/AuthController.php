@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Office;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Mail\ResetMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -18,6 +21,11 @@ class AuthController extends Controller
     public function index()
     {
         return view('pages.office.auth.main');
+    }
+
+    public function forgot()
+    {
+        return view('pages.office.auth.forgot');
     }
 
    public function do_login(Request $request)
@@ -64,19 +72,70 @@ class AuthController extends Controller
         }
     }
 
-    public function show(User $user)
+    public function do_forgot(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            if ($errors->has('email')) {
+                return response()->json([
+                    'alert' => 'error',
+                    'message' => $errors->first('email'),
+                ]);
+            }
+        }
+        $user = User::where('email',$request->email)->first();
+        if(!$user){
+            return response()->json([
+                'alert' => 'error',
+                'message' => 'Email tidak ditemukan',
+            ]);
+        }else{
+            Mail::to($request->email)->send(new ResetMail($user));
+            return response()->json([
+                'alert' => 'success',
+                'message' => 'Kami telah mengirimkan link reset password, mohon cek email anda',
+                'route' => route('office.auth.index'),
+            ]);
+        }
     }
 
-    public function edit(User $user)
+    public function reset($user)
     {
-        //
+        return view('pages.user.auth.reset', compact('user'));
     }
 
-    public function update(Request $request, User $user)
+    public function do_reset(Request $request, $user)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|string|min:6|confirmed',
+            'password_confirmation' => 'required'
+        ]);
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            if ($errors->has('password')) {
+                return response()->json([
+                    'alert' => 'error',
+                    'message' => $errors->first('password'),
+                ]);
+            } elseif ($errors->has('password_confirmation')) {
+                return response()->json([
+                    'alert' => 'error',
+                    'message' => $errors->first('password_confirmation'),
+                ]);
+            }
+        }
+
+        $akun = User::where('id', $user)->first();
+        $akun->password = Hash::make($request->password);
+        $akun->update();
+        return response()->json([
+            'alert' => 'success',
+            'message' => 'Password anda berhasil diganti!',
+            'route' => route('office.auth.index'),
+        ]);
     }
 
     public function do_logout()

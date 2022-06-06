@@ -31,8 +31,10 @@ Route::group(['domain' => ''], function() {
         Route::get('auth', [AuthController::class, 'index'])->name('auth.index');
         Route::prefix('auth')->name('auth.')->group(function(){
             Route::post('login',[AuthController::class, 'do_login'])->name('login');
+            Route::get('forgot',[AuthController::class, 'forgot'])->name('forgot');
             Route::post('forgot',[AuthController::class, 'do_forgot'])->name('forgot');
-            Route::post('reset',[AuthController::class, 'do_reset'])->name('reset');
+            Route::post('reset',[AuthController::class, 'do_reset'])->name('do_reset');
+            Route::get('reset/{user}',[AuthController::class, 'reset'])->name('reset');
         });
         
         Route::group(['middleware' => ['auth:office']], function () {
@@ -48,6 +50,8 @@ Route::group(['domain' => ''], function() {
                 Route::post('store',     [BookController::class, 'store'])->name('store');
                 Route::post('update/{book}',   [BookController::class, 'update'])->name('update');
                 Route::delete('destroy/{book}', [BookController::class, 'destroy'])->name('destroy');
+                Route::get('request_download_pdf',[BookController::class, 'pdfDownload'])->name('request_download_pdf');
+                Route::get('request_download_excel',[BookController::class, 'excelDownload'])->name('request_download_excel');
             });
             Route::prefix('borrow')->name('borrow.')->group(function(){
                 Route::get('index',  [BorrowsController::class, 'index'])->name('index');
@@ -80,6 +84,8 @@ Route::group(['domain' => ''], function() {
                 Route::patch('acc/{borrow}',     [UserBorrowController::class, 'acc'])->name('acc');
                 Route::patch('return/{borrow}',     [UserBorrowController::class, 'return'])->name('return');
                 Route::delete('destroy/{borrow}', [UserBorrowController::class, 'destroy'])->name('destroy');
+                Route::get('request_download_pdf',[UserBorrowController::class, 'pdfDownload'])->name('request_download_pdf');
+                Route::get('request_download_excel',[UserBorrowController::class, 'excelDownload'])->name('request_download_excel');
             });
             Route::prefix('profile')->name('profile.')->group(function(){
                 Route::get('index',  [ProfileController::class, 'index'])->name('index');

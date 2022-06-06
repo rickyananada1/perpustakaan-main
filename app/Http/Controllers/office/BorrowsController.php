@@ -173,7 +173,12 @@ class BorrowsController extends Controller
     }
 
     public static function pdfDownload(){
-        $data = BorrowDetail::get();
+        $data = Borrow::select('peminjaman.*','detail_peminjaman.*','buku.*','users.*')
+        ->join('users','peminjaman.created_by','=','users.id')
+        ->join('detail_peminjaman','peminjaman.id','=','detail_peminjaman.id_peminjaman')
+        ->join('buku','buku.id','=','detail_peminjaman.id_buku')
+        ->where('users.role','!=','member')
+        ->orderBy('peminjaman.created_at','DESC')->get();
         $pdf = PDF::loadView('pages.office.borrow.pdf',compact('data'));
         return $pdf->download('Data Peminjaman Buku.pdf');
     }

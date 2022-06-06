@@ -16,7 +16,7 @@
           ?>
           <tr>
           <?php $__currentLoopData = $collection; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $peminjaman): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-          <td><?php echo e($i+1); ?></td>
+          <td><?php echo e($collection->firstItem() + $i); ?></td>
           <td class="text-capitalize"><?php echo e($peminjaman->user->name); ?></td>
           <td class="text-capitalize"><?php echo e($peminjaman->tanggal); ?></td>
           <th class="text-capitalize"><?php echo e($peminjaman->st); ?></th>

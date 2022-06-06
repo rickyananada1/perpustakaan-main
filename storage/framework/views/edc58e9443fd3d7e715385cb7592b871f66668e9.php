@@ -16,22 +16,8 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Manajemen Peminjaman 1.0.1</h6>
-                <a class="btn <?php echo e(request()->is('office/borrow/index') ? 'btn-primary' : 'btn-secondary'); ?> mb-3 btn-icon-split btn-md text-white" href="<?php echo e(route('office.borrow.index')); ?>">
-                    <span class="icon">
-                        <?php if(request()->is('office/borrow/index')): ?>
-                        <i class="fas fa-check"></i>
-                        <?php endif; ?>
-                    </span>
-                    <span class="text">Admin</span>
-                </a>
-                <a class="btn <?php echo e(request()->is('office/user-borrow/index') ? 'btn-primary' : 'btn-secondary'); ?> mb-3 btn-icon-split btn-md text-white" href="<?php echo e(route('office.user-borrow.index')); ?>">
-                   <span class="icon text-white-50">
-                       <?php if(request()->is('office/user-borrow/index')): ?>
-                        <i class="fas fa-check"></i>
-                        <?php endif; ?>
-                    </span>
-                     <span class="text">Peminjam</span>
-                </a>
+                <button class="btn btn-secondary mb-3 btn-icon-split btn-sm">Admin</button>
+                <button class="btn btn-primary mb-3 btn-icon-split btn-sm">Peminjam</button>
             </div>
             <div class="card-body">
                 <a href="javascript:void(0);" onclick="load_input('<?php echo e(route('office.borrow.create')); ?>')" class="btn btn-primary mb-3 btn-icon-split btn-sm" >
