@@ -20,11 +20,16 @@ class AuthController extends Controller
     }
 
     public function login(){
-        $credentials = request(['email','password']);
-        if(! $token = auth()->attempt($credentials)){
-            return response()->json(['error'=>'Unauthorized'],401);
+        $credentials = User::where(['email' => request()->email, 'role' => 'member'])->first();
+        if($credentials){
+            $account = request(['email','password']);
+            if(! $token = auth()->attempt($account)){
+                return response()->json(['error'=>'Unauthorized'],401);
+            }
+            return $this->responseWithToken($token);
+        }else{
+            return response()->json(['error'=>'Account not found'],401);
         }
-        return $this->responseWithToken($token);
     }
 
     public function register(Request $request){

@@ -28,7 +28,7 @@ class AuthController extends Controller
         return view('pages.office.auth.forgot');
     }
 
-   public function do_login(Request $request)
+    public function do_login(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|max:255',

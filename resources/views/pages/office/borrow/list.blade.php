@@ -19,7 +19,7 @@
           <td>{{$collection->firstItem() + $i}}</td>
           <td class="text-capitalize">{{$peminjaman->user->name}}</td>
           <td class="text-capitalize">{{$peminjaman->tanggal}}</td>
-          <th class="text-capitalize">{{$peminjaman->st}}</th>
+          <th class="text-capitalize">{{$peminjaman->status}}</th>
           <td>
             
           <a href="javascript:;" id="tombol-lihat" type="button" onclick="load_input('{{route('office.borrow.show',$peminjaman->id)}}');" class="btn btn-info btn-icon-split btn-sm">
@@ -30,7 +30,7 @@
           </a>
           </td>
           <td>
-            @if($peminjaman->st != 'dikembalikan')
+            @if($peminjaman->status != 'dikembalikan')
             <a href="javascript:;" id="tombol-ubah" type="button" onclick="load_input('{{route('office.borrow.edit',$peminjaman->id)}}');" class="btn btn-warning btn-icon-split btn-sm">
               <span class="icon text-white-50">
                   <i class="fas fa-pen"></i>
@@ -42,13 +42,14 @@
             @endif
           </td>
           <td>
-            @if($peminjaman->st == 'menunggu')
+            @if($peminjaman->status == 'menunggu')
               <a href="javascript:;" id="tombol-confirm" type="button" onclick="handle_confirm('{{route('office.borrow.confirm',$peminjaman->id)}}');" class="btn btn-success btn-icon-split btn-sm">
                 <span class="icon text-white-50">
                     <i class="fas fa-check"></i>
                 </span>
                 <span class="text">Konfirmasi</span>
-            @elseif($peminjaman->st == 'dikonfirmasi peminjaman')
+              </a>
+            @elseif($peminjaman->status == 'dipinjam')
             <a href="javascript:;" id="tombol-kembalikan" type="button" onclick="handle_confirm('{{route('office.borrow.return',$peminjaman->id)}}');" class="btn btn-primary btn-icon-split btn-sm">
               <span class="icon text-white-50">
                   <i class="fas fa-check"></i>

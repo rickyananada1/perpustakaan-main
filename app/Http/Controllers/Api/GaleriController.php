@@ -12,7 +12,7 @@ class GaleriController extends Controller
     public function index()
     {
         return GaleriResource::collection(
-            Galeri::paginate(5)
+            Galeri::orderBy('id','desc')->paginate(5)
         );
     }
 

@@ -21,7 +21,7 @@
           <td>{{$collection->firstItem() + $i}}</td>
           <td class="text-capitalize">{{$peminjaman->user->name}}</td>
           <td class="text-capitalize">{{$peminjaman->tanggal}}</td>
-          <th class="text-capitalize">{{$peminjaman->st}}</th>
+          <th class="text-capitalize">{{$peminjaman->status}}</th>
           <td>
           <a href="javascript:;" id="tombol-hapus" type="button" onclick="load_input('{{route('office.borrow.show',$peminjaman->id)}}');" class="btn btn-info btn-icon-split btn-sm">
               <span class="icon text-white-50">
@@ -31,27 +31,28 @@
           </a>
         </td>
         <td>
-          @if($peminjaman->st == 'menunggu')
+          @if($peminjaman->status == 'menunggu')
             <a href="javascript:;" id="tombol-confirm" type="button" onclick="handle_confirm('{{route('office.user-borrow.confirm',$peminjaman->id)}}');" class="btn btn-success btn-icon-split btn-sm">
               <span class="icon text-white-50">
                   <i class="fas fa-check"></i>
               </span>
               <span class="text">Konfirmasi Peminjaman</span>
-          @elseif($peminjaman->st == 'dikonfirmasi peminjaman')
+            </a>
+          @elseif($peminjaman->status == 'dikonfirmasi peminjaman')
           <a href="javascript:;" id="tombol-confirm" type="button" onclick="handle_confirm('{{route('office.user-borrow.borrowed',$peminjaman->id)}}');" class="btn btn-primary btn-icon-split btn-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-check"></i>
             </span>
             <span class="text">Dipinjam</span>
           </a>
-          @elseif($peminjaman->st == 'menunggu perpanjangan')
+          @elseif($peminjaman->status == 'menunggu perpanjangan')
           <a href="javascript:;" id="tombol-confirm" type="button" onclick="handle_confirm('{{route('office.user-borrow.acc',$peminjaman->id)}}');" class="btn btn-primary btn-icon-split btn-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-check"></i>
             </span>
             <span class="text">Setujui Perpanjangan</span>
           </a>
-          @elseif($peminjaman->st == 'dikonfirmasi pengembalian')
+          @elseif($peminjaman->status == 'dikonfirmasi pengembalian')
           <a href="javascript:;" id="tombol-confirm" type="button" onclick="handle_confirm('{{route('office.user-borrow.return',$peminjaman->id)}}');" class="btn btn-primary btn-icon-split btn-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-check"></i>

@@ -5,7 +5,7 @@
           <tr>
             <th>No</th>
             <th>Nama User</th>
-            <th>Alamat</th>
+            <th>Email</th>
             <th>No Telepon</th>
             <th>Alamat</th>
             <th>Tergabung Sejak</th>

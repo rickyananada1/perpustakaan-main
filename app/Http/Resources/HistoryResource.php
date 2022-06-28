@@ -18,7 +18,7 @@ class HistoryResource extends JsonResource
             'id' => $this->id,
             'tanggal_peminjaman' => $this->tanggal,
             'id_user' => $this->user->name,
-            'status' => $this->st,
+            'status' => $this->status,
             'created_by' => $this->created_by_name->name,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

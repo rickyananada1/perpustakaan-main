@@ -25,6 +25,7 @@ class EmployeeController extends Controller
                 $query->orWhere('email','like','%'.$keywords.'%');
                 $query->orWhere('no_hp','like','%'.$keywords .'%');
             })
+            ->orderBy('created_at','desc')
             ->paginate(5);
             return view('pages.office.employee.list',compact('collection'));
         }

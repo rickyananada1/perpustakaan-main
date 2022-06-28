@@ -18,7 +18,7 @@ class CreateBorrowsTable extends Migration
             $table->datetime('tanggal');
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('created_by');
-            $table->string('st');
+            $table->enum('status',['menunggu','dikonfirmasi peminjaman','dipinjam','dikonfirmasi pengembalian','menunggu perpanjangan','sudah diperpanjang','dikembalikan']);
             $table->timestamps();
         });
         Schema::table('peminjaman', function ($table) {

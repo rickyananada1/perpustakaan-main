@@ -5,8 +5,7 @@ namespace App\Http\Controllers\office;
 use App\Models\Galeri;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreGaleriRequest;
-use App\Http\Requests\UpdateGaleriRequest;
+use App\Http\Resources\GaleriResource;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,7 +14,9 @@ class GaleriController extends Controller
     public function index(Request $request)
     {
         if($request->ajax() ){
-            $collection = Galeri::paginate(5);
+            $collection = GaleriResource::collection(
+                Galeri::where('judul','like','%'.$request->keywords.'%')->orderBy('id','desc')->paginate(5)
+            );
             return view('pages.office.gallery.list',compact('collection'));
         }
         return view('pages.office.gallery.main');
@@ -30,7 +31,8 @@ class GaleriController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'foto' => 'required',
-            'keterangan' => 'required',
+            'judul' => 'required',
+            'tanggal_kegiatan' => 'required',
         ]);
         if ($validator->fails()) {
             $errors = $validator->errors();
@@ -39,10 +41,15 @@ class GaleriController extends Controller
                     'alert' => 'error',
                     'message' => $errors->first('foto'),
                 ]);
-            }else if($errors->has('keterangan')){
+            }else if($errors->has('judul')){
                 return response()->json([
                     'alert' => 'error',
-                    'message' => $errors->first('keterangan'),
+                    'message' => $errors->first('judul'),
+                ]);
+            }else if($errors->has('tanggal_kegiatan')){
+                return response()->json([
+                    'alert' => 'error',
+                    'message' => $errors->first('tanggal_kegiatan'),
                 ]);
             }
         }
@@ -50,7 +57,8 @@ class GaleriController extends Controller
         $galeri->id_user = $request->id_user;
         $foto = request()->file('foto')->store("galeri");
         $galeri->foto = $foto;
-        $galeri->keterangan = $request->keterangan;
+        $galeri->judul = $request->judul;
+        $galeri->tanggal_kegiatan = $request->tanggal_kegiatan;
         $galeri->save();
         return response()->json([
             'alert' => 'success',
@@ -71,7 +79,8 @@ class GaleriController extends Controller
     public function update(Request $request, Galeri $galeri)
     {
         $validator = Validator::make($request->all(), [
-            'keterangan' => 'required',
+            'judul' => 'required',
+            'tanggal_kegiatan' => 'required',
         ]);
         if ($validator->fails()) {
             $errors = $validator->errors();
@@ -80,10 +89,15 @@ class GaleriController extends Controller
                     'alert' => 'error',
                     'message' => $errors->first('foto'),
                 ]);
-            }else if($errors->has('keterangan')){
+            }else if($errors->has('judul')){
                 return response()->json([
                     'alert' => 'error',
-                    'message' => $errors->first('keterangan'),
+                    'message' => $errors->first('judul'),
+                ]);
+            }else if($errors->has('tanggal_kegiatan')){
+                return response()->json([
+                    'alert' => 'error',
+                    'message' => $errors->first('tanggal_kegiatan'),
                 ]);
             }
         }
@@ -92,7 +106,8 @@ class GaleriController extends Controller
             $file = request()->file('foto')->store("galeri");
              $galeri->foto = $file;
         }
-        $galeri->keterangan = $request->keterangan;
+        $galeri->judul = $request->judul;
+        $galeri->tanggal_kegiatan = $request->tanggal_kegiatan;
         $galeri->update();
         return response()->json([
             'alert' => 'success',

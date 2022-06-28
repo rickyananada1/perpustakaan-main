@@ -20,6 +20,7 @@
         <tr>
           <th>No</th>
           <th>Nama Buku</th>
+          <th>ISBN</th>
           <th>Nama Kategori</th>
           <th>Nama Pengarang</th>
           <th>Nama Penerbit</th>
@@ -27,7 +28,6 @@
           <th>Tahun Terbit</th>
           <th>Foto</th>
           <th>Edisi Buku</th>
-          <th>Jumlah buku</th>
         </tr>
       </thead>
       <tbody>
@@ -35,6 +35,7 @@
       <tr>
         <td><?php echo e($i+1); ?></td>
         <td><?php echo e($item->judul); ?></td>
+        <td><?php echo e($item->isbn); ?></td>
         <td><?php echo e($item->category->nama_kategori); ?></td>
         <td><?php echo e($item->pengarang); ?></td>
         <td><?php echo e($item->penerbit); ?></td>
@@ -42,7 +43,6 @@
         <td><?php echo e($item->tahun_terbit); ?></td>
         <td><img src="<?php echo e(public_path('storage/'.$item->foto)); ?>" style="max-width:200px;max-height:200px;"></td>
         <td><?php echo e($item->edisi_buku); ?></td>
-        <td><?php echo e($item->jumlah_buku); ?></td>
       </tr>
       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </tbody>

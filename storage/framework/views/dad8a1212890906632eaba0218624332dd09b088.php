@@ -35,13 +35,13 @@
         <td><?php echo e($i++); ?></td>
         <td><?php echo e($item->judul); ?></td>
         <td><?php echo e($item->name); ?></td>
-        <td><?php echo e(Carbon\Carbon::parse($item->tanggal_pinjam)->format('Y-m-d')); ?></td>
+        <td><?php echo e(Carbon\Carbon::parse($item->borrow)->format('Y-m-d')); ?></td>
         <?php if(!$item->tanggal_pengembalian): ?>
         <td>NULL</td>
         <?php else: ?>
         <td><?php echo e(Carbon\Carbon::parse($item->tanggal_pengembalian)->format('Y-m-d')); ?></td>            
         <?php endif; ?>
-        <td><?php echo e($item->st); ?></td>
+        <td><?php echo e($item->status); ?></td>
       </tr>
       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </tbody>

@@ -17,7 +17,7 @@ class BooksResource extends JsonResource
             'jumlah_halaman' => $this->jumlah_halaman,
             'tahun_terbit' => $this->tahun_terbit,
             'edisi_buku' => $this->edisi_buku,
-            'jumlah_buku' => $this->jumlah_buku,
+            'isbn' => $this->isbn,
             'dibuat_pada' => $this->created_at,
             'dibuat_oleh' => $this->user->name,
             'Gambar' => $this->image,

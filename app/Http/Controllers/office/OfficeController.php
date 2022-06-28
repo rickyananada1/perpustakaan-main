@@ -17,7 +17,7 @@ class OfficeController extends Controller
     {
         $user = User::where('role','member')->count();
         $book = Book::count();
-        $totalbook = DB::table('buku')->sum('jumlah_buku');
+        $totalbook = DB::table('buku')->count();
         $newBook = Book::where('edisi_buku','baru')->count();
         $category = BookCategory::count();
         $borrowers = Borrow::count();

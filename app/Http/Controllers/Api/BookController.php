@@ -5,9 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BooksResource;
 use App\Models\Book;
-use Illuminate\Http\Request;
-// use App\Http\Traits\ReplyJson;
-use Illuminate\Support\Str;
 
 class BookController extends Controller
 {
@@ -21,7 +18,7 @@ class BookController extends Controller
     public function index()
     {
         return BooksResource::collection(
-            Book::with('category')->paginate(5)
+            Book::with('category')->where('status','tersedia')->paginate(5)
         );
     }
 
@@ -104,4 +101,11 @@ class BookController extends Controller
     //     $book->delete();
     //      return response()->json(['message'=>'Berhasil Diubah!'],201);
     // }
+
+
+    public function search($key){
+        return BooksResource::collection(
+            Book::with('category')->where('judul','like','%'.$key.'%')->paginate(5)
+        );
+    }
 }

@@ -14,11 +14,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="foto" class="labeled-form">Foto</label>
-                                    <input id="foto" type="file" class="form-control form-control-user" name="foto">
+                                    <input id="foto" type="file"  accept=".png,.jpg,.jpeg" class="form-control form-control-user" name="foto">
                                 </div>
                                 <div class="form-group">
-                                    <label for="keterangan" class="labeled-form">Keterangan</label>
-                                    <textarea name="keterangan" id="keterangan" cols="30"  class="form-control form-control-user" rows="10">{{$galeri->keterangan}}</textarea>
+                                    <label for="judul" class="labeled-form">Judul</label>
+                                    <input name="judul" id="judul" class="form-control form-control-user" value="{{$galeri->judul}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tanggal_kegiatan" class="labeled-form">Tanggal Kegiatan</label>
+                                    <input type="text" class="form-control form-control-user" readonly name="tanggal_kegiatan" id="tanggal_kegiatan" value="{{$galeri->tanggal_kegiatan}}">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" onclick="load_list(1);">Batal</button>
@@ -36,3 +40,6 @@
         </div>
     </div>
 </div>
+<script>
+    dates('tanggal_kegiatan');
+</script>

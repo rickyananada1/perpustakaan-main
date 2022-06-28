@@ -20,6 +20,7 @@ Route::group(['domain' => ''], function ($router) {
     Route::patch('return/{id}','Api\BorrowController@return');
     Route::get('book-category/{booksCategory}','Api\BookByCategoryController@index');
     Route::apiResource('/books','Api\BookController');
+    Route::get('books/search/{key}','Api\BookController@search');
     Route::apiResource('/booksCategory','Api\BookCategoryController');
     Route::apiResource('/history','Api\HistoryController');
     Route::apiResource('/gallery','Api\GaleriController');

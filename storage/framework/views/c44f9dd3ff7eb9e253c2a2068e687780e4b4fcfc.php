@@ -3,6 +3,7 @@
 <?php echo $__env->make('theme.office.head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <body id="page-top">
 <?php echo $__env->make('theme.office.aside', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->yieldContent('css'); ?>
 <main class="py-4">
     <?php echo e($slot); ?>
 

@@ -33,6 +33,7 @@ class AdminController extends Controller
                 $query->orWhere('email','like','%'.$keywords.'%');
                 $query->orWhere('no_hp','like','%'.$keywords .'%');
             })
+            ->orderBy('created_at','desc')
             ->paginate(5);
             return view('pages.office.admin.list', compact('collection'));    
         }

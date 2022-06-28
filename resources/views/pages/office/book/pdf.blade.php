@@ -20,6 +20,7 @@
         <tr>
           <th>No</th>
           <th>Nama Buku</th>
+          <th>ISBN</th>
           <th>Nama Kategori</th>
           <th>Nama Pengarang</th>
           <th>Nama Penerbit</th>
@@ -27,7 +28,6 @@
           <th>Tahun Terbit</th>
           <th>Foto</th>
           <th>Edisi Buku</th>
-          <th>Jumlah buku</th>
         </tr>
       </thead>
       <tbody>
@@ -35,6 +35,7 @@
       <tr>
         <td>{{ $i+1 }}</td>
         <td>{{ $item->judul}}</td>
+        <td>{{ $item->isbn}}</td>
         <td>{{ $item->category->nama_kategori}}</td>
         <td>{{ $item->pengarang}}</td>
         <td>{{ $item->penerbit}}</td>
@@ -42,7 +43,6 @@
         <td>{{ $item->tahun_terbit}}</td>
         <td><img src="{{public_path('storage/'.$item->foto)}}" style="max-width:200px;max-height:200px;"></td>
         <td>{{ $item->edisi_buku}}</td>
-        <td>{{ $item->jumlah_buku}}</td>
       </tr>
       @endforeach
     </tbody>

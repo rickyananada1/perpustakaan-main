@@ -8,22 +8,25 @@
   <form class="user" id="form_input">
       <input type="hidden" name="id" value="{{$id ?? $book->kategori_id}}">
           <div class="form-group">
-              <input id="name" type="text" class="form-control form-control-user " name="judul" value="{{ $book->judul }}" autocomplete="name" autofocus placeholder="Judul Buku...">
+              <input id="name" type="text" class="form-control form-control-user " name="judul" value="{{ $book->judul }}" placeholder="Judul Buku...">
           </div>
           <div class="form-group">
-            <input id="pengarang" type="text" class="form-control form-control-user"  name="pengarang" value="{{ $book->pengarang }}" autocomplete="pengarang" placeholder="Nama Pengarang...">
+            <input id="isbn" type="text" class="form-control form-control-user"  name="isbn" value="{{ $book->isbn }}" placeholder="ISBN">
+          </div>
+          <div class="form-group">
+            <input id="pengarang" type="text" class="form-control form-control-user"  name="pengarang" value="{{ $book->pengarang }}" placeholder="Nama Pengarang...">
           </div>
             <div class="form-group">
-            <input id="penerbit" type="text" class="form-control form-control-user"  name="penerbit" value="{{ $book->penerbit }}" autocomplete="penerbit" placeholder="Nama Penerbit...">
+            <input id="penerbit" type="text" class="form-control form-control-user"  name="penerbit" value="{{ $book->penerbit }}" placeholder="Nama Penerbit...">
           </div>
             <div class="form-group">
-            <input id="tebal" type="text" class="form-control form-control-user"  name="jumlah_halaman" id="jumlah_halaman" value="{{ $book->jumlah_halaman }}" autocomplete="tebal" placeholder="Jumlah Halaman...">
+            <input type="text" class="form-control form-control-user"  name="jumlah_halaman" id="jumlah_halaman" value="{{ $book->jumlah_halaman }}" placeholder="Jumlah Halaman...">
           </div>
           <div class="form-group">
-              <input type="file" name="foto" id="foto" class="form-control br10 br10">
+              <input type="file" name="foto" id="foto"  accept=".png,.jpg,.jpeg" class="form-control br10 br10">
           </div>
           <div class="form-group">
-                <input id="tahun_terbit" type="text" value="{{ $book->tahun_terbit}}"class="form-control form-control-user" onfocus="(this.type='date')" onblur="(this.type='text')" name="tahun_terbit" autocomplete="thn_terbit" placeholder="Tahun Terbit...">
+              <input id="tahun_terbit" type="text" value="{{ $book->tahun_terbit}}"class="form-control form-control-user" onblur="(this.type='text')" name="tahun_terbit" placeholder="Tahun Terbit..." readonly>
           </div>
           <div class="form-group br10">
             <select name="edisi_buku" id="edisi_buku" class="form-control br10">
@@ -31,9 +34,6 @@
                 <option value="baru" {{$book->edisi_buku == 'baru' ? 'selected' : ''}}>Baru</option>
                 <option value="bekas"{{$book->edisi_buku == 'bekas' ? 'selected' : ''}}>Bekas</option>
             </select>
-          </div>
-            <div class="form-group">
-            <input id="jumlah_buku" type="text" class="form-control form-control-user"  name="jumlah_buku" value="{{ $book->jumlah_buku }}" autocomplete="jumlah" placeholder="Jumlah Buku...">
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -45,3 +45,8 @@
           </div>
     </form>
 </div>
+
+<script>
+  number_only('jumlah_halaman');
+  year('tahun_terbit');
+</script>

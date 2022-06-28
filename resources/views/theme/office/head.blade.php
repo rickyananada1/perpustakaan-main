@@ -12,6 +12,8 @@
     <link href="{{asset('offices/css/toastr.css') }}" rel="stylesheet">
     <link href="{{asset('offices/css/confirm.css') }}" rel="stylesheet">
     <link href="{{asset('offices/css/custom.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
+    <link rel = "icon" type = "image/png" href = "{{asset('offices/img/logo.png')}}">
     @yield('custom_css')
     <title>{{$title}}</title>
 </head>

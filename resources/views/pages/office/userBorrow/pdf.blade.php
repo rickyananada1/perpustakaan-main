@@ -35,13 +35,13 @@
         <td>{{ $i++ }}</td>
         <td>{{ $item->judul}}</td>
         <td>{{ $item->name}}</td>
-        <td>{{  Carbon\Carbon::parse($item->tanggal_pinjam)->format('Y-m-d')}}</td>
+        <td>{{  Carbon\Carbon::parse($item->borrow)->format('Y-m-d')}}</td>
         @if(!$item->tanggal_pengembalian)
         <td>NULL</td>
         @else
         <td>{{ Carbon\Carbon::parse($item->tanggal_pengembalian)->format('Y-m-d')}}</td>            
         @endif
-        <td>{{ $item->st}}</td>
+        <td>{{ $item->status}}</td>
       </tr>
       @endforeach
     </tbody>

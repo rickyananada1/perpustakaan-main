@@ -16,7 +16,7 @@
                     <div class="d-flex flex-wrap justify-content-center pb-lg-0">
                         <button type="button" id="button_forgot" class="btn btn-lg br10 btn-primary fw-bolder me-4" onclick="handle_save('#button_forgot','#form_forgot','{{route('office.auth.forgot')}}','POST');">
                             <span class="indicator-label">Kirim</span>
-                          <span class="indicator-progress">Please wait...
+                          <span class="indicator-progress">Silahkan Tunggu...
                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                           </span>
                         </button>

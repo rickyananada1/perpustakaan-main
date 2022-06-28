@@ -5,10 +5,10 @@
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('office.home') }}">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+        <div class="sidebar-brand-icon">
+            <img src="{{asset('offices/img/logo.png')}}" style="max-width:100%;max-height:100%;">
         </div>
-        <div class="sidebar-brand-text mx-3">Lumban Dolok <sup>1.0</sup></div>
+        <div class="sidebar-brand-text mx-3">Lumban Dolok</div>
         </a>
 
         <!-- Divider -->
@@ -88,11 +88,11 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
-        {{-- Info Website --}}
-    <li class="nav-item">
-        <a class="nav-link" href="{{route('office.info')}}">
-            <i class="fas fa-fw fa-info-circle"></i>
-            <span>Info Website</span></a>
+        <li class="nav-item {{request()->is('office/info') ? ' active' : ''}}">
+            <a class="nav-link" href="{{route('office.info')}}">
+                <i class="fas fa-fw fa-info-circle"></i>
+                <span>Info Website</span>
+            </a>
         </li>
 
         <!-- Sidebar Toggler (Sidebar) -->
@@ -118,11 +118,10 @@
 
                 <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" id="content_filter">
-                    <div class="input-group">
+                    <div class="input-group {{(request()->is('office/dashboard') || request()->is('office/home') || request()->is('office/info')) ? 'd-none' : ''}}">
                         <input type="text" class="form-control bg-light border-0 small" id="keywords" name="keywords" placeholder="Cari disini" aria-label="Search" aria-describedby="basic-addon2">
                     </div>
                     </form>
-
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 

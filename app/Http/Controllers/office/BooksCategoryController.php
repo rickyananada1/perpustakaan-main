@@ -17,7 +17,7 @@ class BooksCategoryController extends Controller
         if($request->ajax() )
         {
             $keywords = $request->keywords;
-            $collection = BookCategory::where('nama_kategori','like','%'.$keywords.'%')->paginate(5);
+            $collection = BookCategory::where('nama_kategori','like','%'.$keywords.'%')->orderBy('created_at','desc')->paginate(5);
             return view('pages.office.category.list',compact('collection'));
         }
         return view('pages.office.category.main');
@@ -93,7 +93,7 @@ class BooksCategoryController extends Controller
         }
         $bookCategory->nama_kategori = Str::title($request->nama);
         $bookCategory->deskripsi = $request->deskripsi;
-        $bookCategory->created_by = Auth::user()->name;
+        $bookCategory->created_by = Auth::user()->id;
         $bookCategory->update();
         return response()->json([
             'alert' => 'success',

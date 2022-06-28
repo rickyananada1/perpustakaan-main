@@ -8,6 +8,7 @@ use App\Models\BorrowDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Exports\ExcelUserBorrow;
+use App\Models\Book;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
@@ -27,8 +28,7 @@ class UserBorrowController extends Controller
 
     public function confirm(Borrow $borrow)
     {
-        BorrowDetail::where('id_peminjaman',$borrow->id)->update(['st'=>'dikonfirmasi peminjaman']);
-        $borrow->st = 'dikonfirmasi peminjaman';
+        $borrow->status = 'dikonfirmasi peminjaman';
         $borrow->update();
         return response()->json([
             'alert' => 'success',
@@ -38,8 +38,7 @@ class UserBorrowController extends Controller
 
     public function borrowed(Borrow $borrow)
     {
-        BorrowDetail::where('id_peminjaman',$borrow->id)->update(['st'=>'dipinjam']);
-        $borrow->st = 'dipinjam';
+        $borrow->status = 'dipinjam';
         $borrow->update();
         return response()->json([
             'alert' => 'success',
@@ -49,8 +48,7 @@ class UserBorrowController extends Controller
 
     public function acc(Borrow $borrow)
     {
-        BorrowDetail::where('id_peminjaman',$borrow->id)->update(['st'=>'sudah diperpanjang']);
-        $borrow->st = 'sudah diperpanjang';
+        $borrow->status = 'sudah diperpanjang';
         $borrow->update();
         return response()->json([
             'alert' => 'success',
@@ -60,9 +58,16 @@ class UserBorrowController extends Controller
 
     public function return(Borrow $borrow)
     {
-        BorrowDetail::where('id_peminjaman',$borrow->id)->update(['st'=>'dikembalikan']);
-        $borrow->st = 'dikembalikan';
+        $detail = BorrowDetail::where('id_peminjaman',$borrow->id)->get();
+        $borrow->status = 'dikembalikan';
         $borrow->update();
+        foreach($detail as $peminjamanDetail):
+            $book = Book::where('id',$peminjamanDetail->id_buku)->first();
+            $book->status = 'tersedia';
+            $peminjamanDetail->tanggal_pengembalian = now();
+            $peminjamanDetail->update();
+            $book->update();
+        endforeach;
         return response()->json([
             'alert' => 'success',
             'message' => 'Peminjaman Dikonfirmasi',

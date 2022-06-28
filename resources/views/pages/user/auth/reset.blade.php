@@ -8,8 +8,6 @@
                 <h1 class="text-dark mb-3">Masukkan Password baru</h1>
                 <!--end::Title-->
                 <!--begin::Link-->
-                {{-- <div class="text-gray-400 fw-bold fs-4">Sudah mengatur ulang kata sandi Anda ?
-                <a href="authentication/flows/basic/sign-up.html" class="link-primary fw-bolder">Sign in here</a></div> --}}
                 <!--end::Link-->
             </div>
             <!--begin::Heading-->
@@ -51,7 +49,7 @@
             <div class="text-center">
                 <button type="button" id="kt_new_password_submit" class="btn btn-lg btn-primary fw-bolder">
                     <span class="indicator-label">Submit</span>
-                    <span class="indicator-progress">Please wait...
+                    <span class="indicator-progress">Silahkan Tunggu...
                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                 </button>
             </div>
@@ -80,10 +78,10 @@
                             password: {
                                 validators: {
                                     notEmpty: {
-                                        message: "The password is required"
+                                        message: "Password diperlukan"
                                     },
                                     callback: {
-                                        message: "Please enter valid password",
+                                        message: "Masukkan password valid",
                                         callback: function(e) {
                                             // if (e.value.length > 0) return s();
                                         },
@@ -93,13 +91,13 @@
                             "password_confirmation": {
                                 validators: {
                                     notEmpty: {
-                                        message: "The password confirmation is required"
+                                        message: "Konfirmasi Password Diperlukan"
                                     },
                                     identical: {
                                         compare: function() {
                                             return e.querySelector('[name="password"]').value;
                                         },
-                                        message: "The password and its confirm are not the same",
+                                        message: "Password dan Konfirmasi Password Tidak Sama",
                                     },
                                 },
                             },
@@ -181,7 +179,7 @@
                                     } else {
                                         t.removeAttribute("data-kt-indicator"), (t.disabled = !1);
                                         Swal.fire({
-                                            text: "Sorry, looks like there are some errors detected, please try again.",
+                                            text: "Maaf, sepertinya ada beberapa kesalahan yang terdeteksi, silakan coba lagi.",
                                             icon: "error",
                                             buttonsStyling: !1,
                                             confirmButtonText: "Ok, got it!",
@@ -198,7 +196,7 @@
                                                 t.removeAttribute("data-kt-indicator"),
                                                     (t.disabled = !1),
                                                     Swal.fire({
-                                                        text: "You have successfully reset your password!",
+                                                        text: "Anda telah berhasil mengatur ulang kata sandi Anda!",
                                                         icon: "success",
                                                         buttonsStyling: !1,
                                                         confirmButtonText: "Ok, got it!",
@@ -212,7 +210,7 @@
                                                     );
                                             }, 1500)) :
                                         Swal.fire({
-                                            text: "Sorry, looks like there are some errors detected, please try again.",
+                                            text: "Maaf, sepertinya ada beberapa kesalahan yang terdeteksi, silakan coba lagi.",
                                             icon: "error",
                                             buttonsStyling: !1,
                                             confirmButtonText: "Ok, got it!",

@@ -35,23 +35,21 @@
                     <td>{{$i+1}}</td>
                     <td class="text-capitalize">{{$borrowDetail->books->judul}}</td>
                       <td class="text-capitalize">{{$borrowDetail->books->category->nama_kategori}}</td>
-                      <th class="text-capitalize">{{$borrowDetail->tanggal_pinjam}}</th>
+                      <th class="text-capitalize">{{$borrowDetail->borrow->tanggal}}</th>
                       <td class="text-capitalize">{{$borrowDetail->tanggal_pengembalian}}</td>
-                    {{-- lama --}}
                     @if($borrowDetail->lama == null)
                         <td class="text-center">-</td>
                     @else
                         <td>{{$borrowDetail->lama}} Hari</td>
                     @endif
                     <td>{{$borrowDetail->keadaan}} </td>
-                    {{-- pengupload --}}
                     @if($borrowDetail->updated_by == null)
                         <td class="text-center">-</td>
                     @else
                          <td>{{$borrowDetail->updated_by}} </td>
                     @endif
                       <td>
-                        @if($borrowDetail->st == 'menunggu')
+                        @if($borrowDetail->status == 'menunggu')
                           <a href="javascript:;" onclick="handle_confirm('{{route('office.borrow-detail.confirm',$borrowDetail->id)}}');" id="tombol-hapus" type="button" class="btn btn-success btn-icon-split btn-sm">
                               <span class="icon text-white-50">
                                   <i class="fas fa-check"></i>

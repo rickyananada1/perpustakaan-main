@@ -8,10 +8,8 @@
     <div class="d-flex flex-column flex-column-fluid" >
       <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
         <a href="index.html" class="mb-12">
-          
           <span class="glyphicon glyphicon-book"></span>
         </a>
-        
         <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto" id="login_page">
           <form class="form w-100" novalidate="novalidate" id="form_login">
             <div class="text-center mb-10">
@@ -31,12 +29,9 @@
             <div class="text-center">
               <button type="submit" id="tombol_login" class="btn btn-lg btn-primary w-100 mb-5 br10">
                 <span class="indicator-label">Masuk</span>
-                <span class="indicator-progress">Please wait...
+                <span class="indicator-progress">Silahkan Tunggu...
                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
               </button>
-              <div class="text-center text-muted text-uppercase fw-bolder mb-5">atau</div>
-              <a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5 br10">
-              <img alt="Logo" src="<?php echo e(asset('offices/img/google-icon.svg')); ?>" class="h-20px me-3"/>Masuk Menggunakan Google</a>
             </div>
           </form>
         </div>

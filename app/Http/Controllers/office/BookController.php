@@ -67,7 +67,7 @@ class BookController extends Controller
             'foto' => 'required',
             'tahun_terbit' => 'required',
             'edisi_buku' => 'required',
-            'jumlah_buku' => 'required',
+            'isbn' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -107,10 +107,10 @@ class BookController extends Controller
                     'alert' => 'error',
                     'message' => $errors->first('edisi_buku'),
                 ]);
-            }else if($errors->has('jumlah_buku')){
+            }else if($errors->has('isbn')){
                 return response()->json([
                     'alert' => 'error',
-                    'message' => $errors->first('jumlah_buku'),
+                    'message' => $errors->first('isbn'),
                 ]);
             }
         }
@@ -122,7 +122,7 @@ class BookController extends Controller
         $book->jumlah_halaman = $request->jumlah_halaman;
         $book->tahun_terbit = $request->tahun_terbit;
         $book->edisi_buku = $request->edisi_buku;
-        $book->jumlah_buku = $request->jumlah_buku;
+        $book->isbn = $request->isbn;
         $book->created_by = Auth::user()->id;
         $book->created_at = date('Y-m-d H:i:s');
         $file = request()->file('foto')->store("buku");
@@ -153,7 +153,7 @@ class BookController extends Controller
             'jumlah_halaman' => 'required',
             'tahun_terbit' => 'required',
             'edisi_buku' => 'required',
-            'jumlah_buku' => 'required',
+            'isbn' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -193,10 +193,10 @@ class BookController extends Controller
                     'alert' => 'error',
                     'message' => $errors->first('edisi_buku'),
                 ]);
-            }else if($errors->has('jumlah_buku')){
+            }else if($errors->has('isbn')){
                 return response()->json([
                     'alert' => 'error',
-                    'message' => $errors->first('jumlah_buku'),
+                    'message' => $errors->first('isbn'),
                 ]);
             }
         }
@@ -207,7 +207,7 @@ class BookController extends Controller
         $book->jumlah_halaman = $request->jumlah_halaman;
         $book->tahun_terbit = $request->tahun_terbit;
         $book->edisi_buku = $request->edisi_buku;
-        $book->jumlah_buku = $request->jumlah_buku;
+        $book->isbn = $request->isbn;
         if($request->foto){
             Storage::delete($book->foto);
             $file = request()->file('foto')->store("buku");

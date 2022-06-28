@@ -20,12 +20,11 @@
                     <tr>
                       <th>No</th>
                       <th>Judul Buku</th>
+                      <th>ISBN Buku</th>
                       <th>Kategori Buku</th>
-                      <th>Tanggal Peminjaman</th>
                       <th>Dikembalikan Tanggal</th>
                       <th>Lama Peminjaman</th>
                       <th>Denda</th>
-                      <th>Diterima Oleh</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
@@ -34,12 +33,11 @@
                     <tr>
                     <td>{{$i+1}}</td>
                     <td class="text-capitalize">{{$borrowDetail->books->judul}}</td>
-                      <td class="text-capitalize">{{$borrowDetail->books->category->nama_kategori}}</td>
-                      <th class="text-capitalize">{{$borrowDetail->tanggal_pinjam}}</th>
-                      <td class="text-capitalize">{{$borrowDetail->tanggal_pengembalian}}</td>
-                    {{-- lama --}}
+                    <td class="text-capitalize">{{$borrowDetail->books->isbn}}</td>
+                    <td class="text-capitalize">{{$borrowDetail->books->category->nama_kategori}}</td>
+                    <td class="text-capitalize">{{$borrowDetail->tanggal_pengembalian}}</td>
                     @php
-                      $awal = new DateTime($borrowDetail->tanggal_pinjam);
+                      $awal = new DateTime($borrow->tanggal);
                       $akhir = new DateTime($borrowDetail->tanggal_pengembalian);
                       $hasil = $awal->diff($akhir);
                     @endphp
@@ -50,24 +48,10 @@
                     @endif
                     @if($borrowDetail->tanggal_pengembalian != null && $hasil->format('%a') > 3)
                       <td>{{$hasil->format('%a') > 3 ? 'Rp '.number_format(5000) : '' }} </td>
-                    @endif
-                    {{-- pengupload --}}
-                    @if($borrowDetail->updated_by == null)
-                        <td class="text-center">-</td>
                     @else
-                         <td>{{$borrowDetail->updated_by}} </td>
+                       <td class="text-center">-</td>
                     @endif
                       <td>
-                        @if($borrowDetail->st == 'menunggu')
-                          <a href="javascript:;" onclick="handle_confirm('{{route('office.borrow-detail.confirm',$borrowDetail->id)}}');" id="tombol-hapus" type="button" class="btn btn-success btn-icon-split btn-sm">
-                              <span class="icon text-white-50">
-                                  <i class="fas fa-check"></i>
-                              </span>
-                              <span class="text">Konfirmasi</span>
-                          </a>
-                        @else
-
-                        @endif
                         <a href="javascript:;" onclick="handle_delete('{{route('office.borrow-detail.destroy',$borrowDetail->id)}}');" id="tombol-hapus" type="button" class="btn btn-danger btn-icon-split btn-sm">
                           <span class="icon text-white-50">
                               <i class="fas fa-trash"></i>

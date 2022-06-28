@@ -14,6 +14,6 @@ class BookCategorySeeder extends Seeder
      */
     public function run()
     {
-        BookCategory::factory(5000)->create();
+        BookCategory::factory(100)->create();
     }
 }

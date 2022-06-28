@@ -17,9 +17,8 @@ class CreateBorrowDetailTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_peminjaman');
             $table->unsignedBigInteger('id_buku');
-            $table->datetime('tanggal_pinjam');
             $table->string('denda')->nullable();
-            $table->string('st');
+            $table->enum('keadaan',['baik','rusak']);
             $table->datetime('tanggal_pengembalian')->nullable();
             $table->timestamps();
         });

@@ -5,13 +5,13 @@
             <tr>
               <th>No</th>
               <th>Sampul Buku</th>
+              <th>ISBN</th>
               <th>Judul Buku</th>
               <th>Nama Pengarang</th>
               <th>Nama Penerbit</th>
               <th>Jumlah Halaman</th>
               <th>Tahun Terbit</th>
               <th>Edisi Buku</th>
-              <th>Jumlah Buku</th>
               <th>Diinput Pada</th>
               <th>Diinput Oleh</th>
               <th>Ubah</th>
@@ -23,13 +23,13 @@
               <tr>
                 <td>{{$collection->firstItem() + $i}}</td>
                 <td><img src="{{$book->image}}" style="max-width:200px;max-height:200px;"></td>
+                <td>{{$book->isbn}}</td>
                 <td>{{$book->judul}}</td>
                 <td>{{$book->pengarang}}</td>
                 <th>{{$book->penerbit}}</th>
                 <td>{{$book->jumlah_halaman}}</td>
                 <td>{{$book->tahun_terbit}}</td>
                 <td>{{$book->edisi_buku}}</td>
-                <td>{{$book->jumlah_buku}}</td>
                 
                 <td>{{date("Y-m-d", strtotime($book->created_at))}}</td>
                 <td>{{$book->user->name}}</td>

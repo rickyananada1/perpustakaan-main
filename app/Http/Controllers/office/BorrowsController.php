@@ -22,6 +22,8 @@ class BorrowsController extends Controller
             $keywords = $request->keywords;
             $collection = Borrow::select('peminjaman.*')->join('users','peminjaman.created_by','=','users.id')
                 ->where('users.role','!=','member')
+                ->join('users as tableuser','peminjaman.id_user','=','tableuser.id')
+                ->where('tableuser.name','like','%'.$request->keywords.'%')
                 ->orderBy('peminjaman.created_at','DESC')
                 ->paginate(5);
             return view('pages.office.borrow.list',compact('collection'));
@@ -31,8 +33,8 @@ class BorrowsController extends Controller
     
     public function create()
     {
-        $books = Book::get();
-        $users = User::get();
+        $books = Book::where('status','tersedia')->get();
+        $users = User::where('role','member')->get();
         return view('pages.office.borrow.input',compact('books','users'),['borrow' => new Borrow]);
     }
     
@@ -59,17 +61,20 @@ class BorrowsController extends Controller
         $borrow = new Borrow;
         $borrow->id_user = $request->users;
         $borrow->tanggal = now();
-        $borrow->st = 'dipinjam';
+        $borrow->status = 'dipinjam';
         $borrow->created_at = now();
         $borrow->created_by = Auth::user()->id;
         $borrow->updated_at = now();
         $borrow->save();
         foreach ($request->books as $key => $value) {
+            $books = Book::whereIn('id',[$value])->get();
+            foreach($books as $i => $book){
+                $book->status = 'dipinjam';
+                $book->update();
+            }
             $detail = new BorrowDetail;
             $detail->id_peminjaman = $borrow->id;
             $detail->id_buku = $value;
-            $detail->tanggal_pinjam = now();
-            $detail->st = 'dipinjam';
             $detail->save();
         }
         return response()->json([
@@ -86,8 +91,8 @@ class BorrowsController extends Controller
 
     public function confirm(Borrow $borrow)
     {
-        BorrowDetail::where('id_peminjaman',$borrow->id)->update(['st'=>'dikonfirmasi peminjaman']);
-        $borrow->st = 'dikonfirmasi peminjaman';
+        BorrowDetail::where('id_peminjaman',$borrow->id)->update(['status'=>'dikonfirmasi peminjaman']);
+        $borrow->status = 'dikonfirmasi peminjaman';
         $borrow->update();
         return response()->json([
             'alert' => 'success',
@@ -122,22 +127,18 @@ class BorrowsController extends Controller
                 ]);
             }
         }
-        // $borrow->id_user = $request->users;
-        // $borrow->updated_at = now();
-        // $borrow->update();
-        // $Access = BorrowDetail::all();
-        // foreach($Access as $list)
-        // {
-        //   $id_buku = $request->input('id_buku',$list->id_buku);
-        //   $detail = BorrowDetail::where('id_peminjaman',$borrow);
-        //   $detail->id_buku = $id_buku;
-        //   $detail->update(request()->except(['_token','books','users']));
-        // }
-
-        foreach ($request->books as $key => $value) {
-            dd($value);
-            BorrowDetail::where('id_peminjaman',$borrow)->update(['id_buku'=>$value,'tanggal_pinjam' => now()]);
+        $borrows = Borrow::where('id',$borrow)->first();
+        $borrows->id_user = $request->users;
+        $borrows->updated_at = now();
+        $borrows->update();
+        $Access = BorrowDetail::where('id_peminjaman',$borrows->id)->get();
+        $buku = $request->books;
+        foreach($Access as $key => $row)
+        {
+            $row->id_buku = $buku[$key];
+            $row->update();
         }
+        
         return response()->json([
             'alert' => 'success',
             'message' => 'Peminjaman Diubah',
@@ -145,17 +146,17 @@ class BorrowsController extends Controller
     }
 
     public function return(Borrow $borrow){
-        BorrowDetail::where('id_peminjaman',$borrow->id)->update(['st'=>'dikembalikan']);
-        $borrow->st = 'dikembalikan';
-        $books =  BorrowDetail::where('id_peminjaman',$borrow->id)->get();
-        foreach ($books as $key => $value) {
+        $borrow->status = 'dikembalikan';
+        $detail =  BorrowDetail::where('id_peminjaman',$borrow->id)->get();
+        foreach ($detail as $key => $value) {
+            $books = Book::whereIn('id', [$value->id_buku])->get();
+            foreach($books as $i => $book){
+                $book->status = 'tersedia';
+                $book->update();
+            }
             $value->tanggal_pengembalian = now();
             $value->update();
         }
-        /* if($borrow->tanggal_pengembalian > ){
-                $borrow->denda = 5000;
-        }
-        */
         $borrow->update();
         return response()->json([
             'alert' => 'success',
@@ -173,7 +174,7 @@ class BorrowsController extends Controller
     }
 
     public static function pdfDownload(){
-        $data = Borrow::select('peminjaman.*','detail_peminjaman.*','buku.*','users.*')
+        $data = Borrow::select('peminjaman.*','detail_peminjaman.*','buku.kategori_id','buku.isbn','buku.judul','buku.pengarang','users.*')
         ->join('users','peminjaman.created_by','=','users.id')
         ->join('detail_peminjaman','peminjaman.id','=','detail_peminjaman.id_peminjaman')
         ->join('buku','buku.id','=','detail_peminjaman.id_buku')

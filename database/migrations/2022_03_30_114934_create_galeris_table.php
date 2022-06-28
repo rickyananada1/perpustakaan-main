@@ -17,7 +17,8 @@ class CreateGalerisTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_user');
             $table->string('foto');
-            $table->longtext('keterangan');
+            $table->text('judul');
+            $table->date('tanggal_kegiatan');
             $table->timestamps();
         });
     }

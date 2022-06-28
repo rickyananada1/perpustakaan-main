@@ -21,7 +21,6 @@
               </div>
               @if(!$member->id)
               <div class="col-sm-6">
-                 {{-- <input id="tgl_lahir" type="text" class="form-control form-control-user" onfocus="(this.type='date')" onblur="(this.type='text')" name="tgl_lahir" autocomplete="tgl_lahir" placeholder="Tanggal Lahir..."> --}}
                 <input type="password" name="password" id="password" class="form-control form-control-user" placeholder="Password ...">
               </div>
               @endif

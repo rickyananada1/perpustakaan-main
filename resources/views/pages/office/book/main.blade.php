@@ -52,8 +52,6 @@
             });
         }
     });
-    number_only('jumlah_halaman');
-    number_only('jumlah_buku');
 </script>
 @endsection
 </x-OfficeLayout>

@@ -20,6 +20,7 @@
         <tr>
           <th>No</th>
           <th>Nama Buku</th>
+          <th>ISBN Buku</th>
           <th>Nama Peminjam</th>
           <th>Tanggal Peminjaman</th>
           <th>Tanggal Pengembalian</th>
@@ -34,6 +35,7 @@
       <tr>
         <td><?php echo e($i++); ?></td>
         <td><?php echo e($item->judul); ?></td>
+        <td><?php echo e($item->isbn); ?></td>
         <td><?php echo e($item->user->name); ?></td>
         <td><?php echo e(Carbon\Carbon::parse($item->tangal_pinjam)->format('Y-m-d')); ?></td>
         <?php if(!$item->tanggal_pengembalian): ?>
@@ -41,7 +43,7 @@
         <?php else: ?>
         <td><?php echo e(Carbon\Carbon::parse($item->tanggal_pengembalian)->format('Y-m-d')); ?></td>            
         <?php endif; ?>
-        <td><?php echo e($item->st); ?></td>
+        <td><?php echo e($item->status); ?></td>
       </tr>
       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </tbody>

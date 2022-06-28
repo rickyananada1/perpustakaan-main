@@ -10,13 +10,13 @@
     <h1 class="h3 mb-2 text-gray-800">Data Buku</h1>
     <p class="mb-4">Berikut merupakan data buku berdasarkan kategori buku di perpustakaan Lumban Dolok</p>
     <div class="card-body">
-        <a href="<?php echo e(route('office.books.request_download_pdf')); ?>"class="btn btn-danger mb-3 btn-icon-split btn-sm" >
+        <a href="<?php echo e(route('office.books.request_download_pdf')); ?>"class="btn btn-outline-danger mb-3 btn-icon-split btn-sm" >
             <span class="icon text-white-50">
                 <i class="fas fa-check"></i>
             </span>
             <span class="text">Cetak Data Semua Buku (PDF)</span>
         </a>
-        <a href="<?php echo e(route('office.books.request_download_excel')); ?>"class="btn btn-warning mb-3 btn-icon-split btn-sm" >
+        <a href="<?php echo e(route('office.books.request_download_excel')); ?>"class="btn btn-outline-warning mb-3 btn-icon-split btn-sm" >
             <span class="icon text-white-50">
                 <i class="fas fa-check"></i>
             </span>

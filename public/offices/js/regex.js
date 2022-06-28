@@ -5,8 +5,15 @@ function date(obj) {
 		format: 'dd-mm-yyyy',
 		todayBtn: "linked",
 		clearBtn: true,
-		startDate: '0',
-		endDate: '0'
+	});
+}
+function dates(obj) {
+	$('#' + obj).datepicker({
+		todayHighlight: true,
+		autoclose: true,
+		format: 'yyyy-mm-dd',
+		todayBtn: "linked",
+		clearBtn: true,
 	});
 }
 function year(obj) {

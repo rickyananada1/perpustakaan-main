@@ -7,7 +7,10 @@
             <th>Nama Peminjam</th>
             <th>Tanggal Peminjaman</th>
             <th>Status</th>
-            <th>Aksi</th>
+            <th>Lihat Data</th>
+            <th>Edit Data</th>
+            <th>Konfirmasi Data</th>
+            <th>Hapus Data</th>
           </tr>
         </thead>
         <tbody>
@@ -16,7 +19,7 @@
           <td><?php echo e($collection->firstItem() + $i); ?></td>
           <td class="text-capitalize"><?php echo e($peminjaman->user->name); ?></td>
           <td class="text-capitalize"><?php echo e($peminjaman->tanggal); ?></td>
-          <th class="text-capitalize"><?php echo e($peminjaman->st); ?></th>
+          <th class="text-capitalize"><?php echo e($peminjaman->status); ?></th>
           <td>
             
           <a href="javascript:;" id="tombol-lihat" type="button" onclick="load_input('<?php echo e(route('office.borrow.show',$peminjaman->id)); ?>');" class="btn btn-info btn-icon-split btn-sm">
@@ -25,35 +28,45 @@
               </span>
               <span class="text">Lihat</span>
           </a>
-          <?php if($peminjaman->st != 'dikembalikan'): ?>
-          <a href="javascript:;" id="tombol-ubah" type="button" onclick="load_input('<?php echo e(route('office.borrow.edit',$peminjaman->id)); ?>');" class="btn btn-warning btn-icon-split btn-sm">
-            <span class="icon text-white-50">
-                <i class="fas fa-pen"></i>
-            </span>
-            <span class="text">Ubah</span>
-          </a>
-          <?php endif; ?>
-          <?php if($peminjaman->st == 'menunggu'): ?>
-            <a href="javascript:;" id="tombol-confirm" type="button" onclick="handle_confirm('<?php echo e(route('office.borrow.confirm',$peminjaman->id)); ?>');" class="btn btn-success btn-icon-split btn-sm">
+          </td>
+          <td>
+            <?php if($peminjaman->status != 'dikembalikan'): ?>
+            <a href="javascript:;" id="tombol-ubah" type="button" onclick="load_input('<?php echo e(route('office.borrow.edit',$peminjaman->id)); ?>');" class="btn btn-warning btn-icon-split btn-sm">
+              <span class="icon text-white-50">
+                  <i class="fas fa-pen"></i>
+              </span>
+              <span class="text">Ubah</span>
+            </a>
+            <?php else: ?>
+            <span class="text">Tidak Dapat Di Edit</span>
+            <?php endif; ?>
+          </td>
+          <td>
+            <?php if($peminjaman->status == 'menunggu'): ?>
+              <a href="javascript:;" id="tombol-confirm" type="button" onclick="handle_confirm('<?php echo e(route('office.borrow.confirm',$peminjaman->id)); ?>');" class="btn btn-success btn-icon-split btn-sm">
+                <span class="icon text-white-50">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span class="text">Konfirmasi</span>
+              </a>
+            <?php elseif($peminjaman->status == 'dipinjam'): ?>
+            <a href="javascript:;" id="tombol-kembalikan" type="button" onclick="handle_confirm('<?php echo e(route('office.borrow.return',$peminjaman->id)); ?>');" class="btn btn-primary btn-icon-split btn-sm">
               <span class="icon text-white-50">
                   <i class="fas fa-check"></i>
               </span>
-              <span class="text">Konfirmasi</span>
-          <?php endif; ?>
-          <?php if($peminjaman->st == 'dikonfirmasi peminjaman'): ?>
-          <a href="javascript:;" id="tombol-kembalikan" type="button" onclick="handle_confirm('<?php echo e(route('office.borrow.return',$peminjaman->id)); ?>');" class="btn btn-primary btn-icon-split btn-sm">
-            <span class="icon text-white-50">
-                <i class="fas fa-check"></i>
-            </span>
-            <span class="text">Dikembalikan</span>
-          </a>
-          <?php endif; ?>
-          <a href="javascript:;" id="tombol-hapus" type="button"  onclick="handle_delete('<?php echo e(route('office.borrow.destroy',$peminjaman->id)); ?>');" class="btn btn-danger btn-icon-split btn-sm">
-            <span class="icon text-white-50">
-                <i class="fas fa-trash"></i>
-            </span>
-            <span class="text">Hapus</span>
-          </a>
+              <span class="text">Dikembalikan</span>
+            </a>
+            <?php else: ?>
+            <span class="text">Tidak Ada Konfirmasi</span>
+            <?php endif; ?>
+          </td>
+          <td>
+            <a href="javascript:;" id="tombol-hapus" type="button"  onclick="handle_delete('<?php echo e(route('office.borrow.destroy',$peminjaman->id)); ?>');" class="btn btn-danger btn-icon-split btn-sm">
+              <span class="icon text-white-50">
+                  <i class="fas fa-trash"></i>
+              </span>
+              <span class="text">Hapus</span>
+            </a>
           </td>
           </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

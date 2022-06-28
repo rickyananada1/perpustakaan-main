@@ -20,6 +20,7 @@
         <tr>
           <th>No</th>
           <th>Nama Buku</th>
+          <th>ISBN Buku</th>
           <th>Nama Peminjam</th>
           <th>Tanggal Peminjaman</th>
           <th>Tanggal Pengembalian</th>
@@ -34,6 +35,7 @@
       <tr>
         <td>{{ $i++ }}</td>
         <td>{{ $item->judul}}</td>
+        <td>{{ $item->isbn}}</td>
         <td>{{ $item->user->name}}</td>
         <td>{{  Carbon\Carbon::parse($item->tangal_pinjam)->format('Y-m-d')}}</td>
         @if(!$item->tanggal_pengembalian)
@@ -41,7 +43,7 @@
         @else
         <td>{{ Carbon\Carbon::parse($item->tanggal_pengembalian)->format('Y-m-d')}}</td>            
         @endif
-        <td>{{ $item->st}}</td>
+        <td>{{ $item->status}}</td>
       </tr>
       @endforeach
     </tbody>

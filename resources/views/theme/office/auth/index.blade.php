@@ -21,7 +21,6 @@
     <script src="{{asset('offices/js/scripts.bundle.js') }}"></script>
     <script src="{{asset('offices/js/plugins.bundle.js') }}"></script>
     <script src="{{asset('offices/js/auth.js') }}"></script>
-    {{-- <script src="{{asset('offices/js/plugin.js') }}"></script> --}}
     @yield('custom_js')
 </body>
 </html>

@@ -18,16 +18,16 @@ class BookByCategoryResource extends JsonResource
             'id' => $this->id,
             'judul' => $this->judul,
             'pengarang' => $this->pengarang,
-            'penerbit' => $this->user->penerbit,
+            'penerbit' => $this->penerbit,
             'jumlah_halaman' => $this->jumlah_halaman,
             'foto' => asset('storage/' . $this->foto),
             'edisi_buku' => $this->edisi_buku,
-            'jumlah_buku' => $this->jumlah_buku,
+            'isbn' => $this->isbn,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'category' => BookCategoriesResource::collection($this->category),
+            'category' => new BookCategoriesResource($this->category),
         ];
     }
 }

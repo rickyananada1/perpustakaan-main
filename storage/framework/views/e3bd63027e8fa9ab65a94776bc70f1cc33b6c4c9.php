@@ -12,6 +12,8 @@
     <link href="<?php echo e(asset('offices/css/toastr.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('offices/css/confirm.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('offices/css/custom.css')); ?>" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
+    <link rel = "icon" type = "image/png" href = "<?php echo e(asset('offices/img/logo.png')); ?>">
     <?php echo $__env->yieldContent('custom_css'); ?>
     <title><?php echo e($title); ?></title>
 </head><?php /**PATH C:\laragon\www\perpustakaan-main\resources\views/theme/office/head.blade.php ENDPATH**/ ?>

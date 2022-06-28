@@ -22,7 +22,6 @@
     <script src="<?php echo e(asset('offices/js/scripts.bundle.js')); ?>"></script>
     <script src="<?php echo e(asset('offices/js/plugins.bundle.js')); ?>"></script>
     <script src="<?php echo e(asset('offices/js/auth.js')); ?>"></script>
-    
     <?php echo $__env->yieldContent('custom_js'); ?>
 </body>
 </html><?php /**PATH C:\laragon\www\perpustakaan-main\resources\views/theme/office/auth/index.blade.php ENDPATH**/ ?>

@@ -142,15 +142,14 @@ function handle_confirm(url){
         closeAnimation: 'scale',
         animateFromElement: false,
         columnClass: 'medium',
-        title: 'Confirmation',
-        content: 'Are you sure want to confirm this data ?',
-        // icon: 'fa fa-question',
+        title: 'Konfirmasi',
+        content: 'Anda yakin ingin mengkonfirmasi data ini?',
         theme: 'material',
         closeIcon: true,
         type: 'orange',
-        autoClose: 'No|5000',
+        autoClose: 'Tidak|5000',
         buttons: {
-            Yes: {
+            Ya: {
                 btnClass: 'btn-red any-other-class',
                 action: function(){
                     $.ajax({
@@ -169,7 +168,7 @@ function handle_confirm(url){
                     });
                 }
             },
-            No: {
+            Tidak: {
                 btnClass: 'btn-blue', // multiple classes.
                 // ...
             }
@@ -301,42 +300,3 @@ function save_form_modal(tombol,form,url,modal,method)
     });
 
 }
-// function upload_form_modal(tombol,form,url,modal)
-// {
-//     $(document).one('submit', form, function (e) {
-//         let data = new FormData(this);
-//         data.append('_method', 'POST');
-//         $(tombol).prop("disabled", true);
-//         $(tombol).html("Harap tunggu");
-//         $.ajax({
-//             type: "POST",
-//             url: url,
-//             data: data,
-//             enctype: 'multipart/form-data',
-//             cache: false,
-//             contentType: false,
-//             resetForm: true,
-//             processData: false,
-//             dataType: 'json',
-//             success: function (response) {
-//                 if (response.alert=="success") {
-//                     success_message(response.message);
-//                     $(form)[0].reset();
-//                     $(modal).modal('hide');
-//                     setTimeout(function () {
-//                         $(tombol).prop("disabled", false);
-//                         $(tombol).html("Kirim");
-//                     }, 2000);
-//                 } else {
-//                     error_message(response.message);
-//                     setTimeout(function () {
-//                         $(tombol).prop("disabled", false);
-//                         $(tombol).html("Kirim");
-//                     }, 2000);
-//                 }
-//             },
-//         });
-//         return false;
-//     });
-
-// }

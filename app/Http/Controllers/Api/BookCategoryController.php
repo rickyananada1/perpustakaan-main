@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BookCategoriesResource;
 use App\Models\BookCategory;
-use Illuminate\Http\Request;
 
 class BookCategoryController extends Controller{
     

@@ -3,15 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\BooksResource;
 use App\Models\Book;
 use App\Models\Borrow;
 use App\Models\BorrowDetail;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class BorrowController extends Controller
 {
@@ -26,19 +21,24 @@ class BorrowController extends Controller
         $borrow = new Borrow;
         $borrow->id_user = request()->user()->id;
         $borrow->tanggal = now();
-        $borrow->st = 'menunggu';
+        $borrow->status = 'menunggu';
         $borrow->created_by = auth()->user()->id;
         $borrow->created_at = now();
         $borrow->updated_at = now();
         $borrow->save();
         
-        $detail = new BorrowDetail;
-        $detail->id_peminjaman = $borrow->id;
-        $detail->id_buku = $book->id;
-        $detail->tanggal_pinjam = now();
-        $detail->st = 'menunggu';
-        $detail->save();
-        return response()->json(['message'=>'Buku Berhasil Dipinjam! Menununggu konfirmasi admin untuk dapat menjemput buku'],201);
+        if($book->status == 'tersedia'){
+            $detail = new BorrowDetail;
+            $detail->id_peminjaman = $borrow->id;
+            $detail->id_buku = $book->id;
+            $detail->save();
+            $book->status = 'dipinjam';
+            $book->update();
+            return response()->json(['message'=>'Buku Berhasil Dipinjam! Menununggu konfirmasi admin untuk dapat menjemput buku'],201);
+        }else{
+            return response()->json(['message'=>'Buku tidak berhasil dipinjam , buku masih dipinjam oleh orang lain'],400);
+        }
+        // return response()->json(['message'=>'Buku Berhasil Dipinjam! Menununggu konfirmasi admin untuk dapat menjemput buku'],201);
     }
 
     // public function request($id){
@@ -54,13 +54,8 @@ class BorrowController extends Controller
 
     public function extend($id){
         $data = Borrow::where('id', $id)->first();
-        $data->st = 'menunggu perpanjangan';
+        $data->status = 'menunggu perpanjangan';
         $data->update();
-        $peminjaman = BorrowDetail::where('id_peminjaman', $id)->get();
-        foreach($peminjaman as $peminjamanDetail):
-            $peminjamanDetail->st = 'menunggu perpanjangan';
-            $peminjamanDetail->update();
-        endforeach;
         return response()->json(['message'=>'Permintaan Perpanjangan Berhasil Dikirim!'],201);
     }
     
@@ -87,13 +82,11 @@ class BorrowController extends Controller
         // $peminjaman->st = 'dikembalikan';
         // $peminjaman->update();
         $data = Borrow::where('id', $id)->first();
-        $data->st = 'dikonfirmasi pengembalian';
+        $data->status = 'dikonfirmasi pengembalian';
         $data->update();
         $peminjaman = BorrowDetail::where('id_peminjaman', $id)->get();
         foreach($peminjaman as $peminjamanDetail):
-            $peminjamanDetail->st = 'dikonfirmasi pengembalian';
-            $peminjamanDetail->tanggal_pengembalian = now();
-            $diff = Carbon::parse($peminjamanDetail->tanggal_pinjam)->diffInDays(Carbon::parse($peminjamanDetail->tanggal_pengembalian));
+            $diff = Carbon::parse($data->tanggal)->diffInDays(Carbon::parse($peminjamanDetail->tanggal_pengembalian));
             if($diff > 6){
                 $peminjamanDetail->denda = 10000;
             }

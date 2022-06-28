@@ -16,11 +16,10 @@
             
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Welcome Message !!</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Selamat Datang {{ Auth::user()->name }}</h6>
                 </div>
                 <div class="card-body">
-                      <p>Selamat Datang Admin <b class="text-uppercase ">{{ Auth::user()->name }}, </b></p>
-                      <p class="mb-0">Sistem Informasi Manajemen Perpustakaan "Lumban Dolok" <br> Jangan Berikan Email dan Password Anda pada Siapapun</p>
+                      <p class="mb-0">Sistem Informasi Administrasi Perpustakaan Desa Lumban Dolok <br> Jangan Berikan Email dan Password Anda pada Siapapun</p>
                 </div>
             </div>
             <div class="row">
@@ -139,9 +138,6 @@
 
             var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
             categoryAxis.dataFields.category = "monthname";
-            categoryAxis.renderer.grid.template.location = 0;
-            categoryAxis.renderer.minGridDistance = 30;
-
             categoryAxis.renderer.labels.template.adapter.add("dy", function(dy, target) {
               if (target.dataItem && target.dataItem.index & 2 == 2) {
                 return dy + 25;
@@ -157,12 +153,10 @@
             series.dataFields.categoryX = "monthname";
             series.name = "Count";
             series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
-            series.columns.template.fillOpacity = .8;
 
-            var columnTemplate = series.columns.template;
-            columnTemplate.strokeWidth = 2;
-            columnTemplate.strokeOpacity = 1;
 
+            // var columnTemplate = series.columns.template;
+            
             }); // end am4core.ready()
           </script>
         @endsection

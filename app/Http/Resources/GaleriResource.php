@@ -16,7 +16,8 @@ class GaleriResource extends JsonResource
     {
         return [
             'foto' => $this->image,
-            'keterangan' => $this->keterangan,
+            'judul' => $this->judul,
+            'tanggal_kegiatan' => $this->tanggal_kegiatan,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

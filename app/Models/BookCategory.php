@@ -13,4 +13,5 @@ class BookCategory extends Model
     public function user(){
         return $this->BelongsTo(User::class, "created_by","id");
     }
+    
 }

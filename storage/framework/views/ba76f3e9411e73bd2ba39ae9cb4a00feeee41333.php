@@ -7,7 +7,9 @@
             <th>Nama Peminjam</th>
             <th>Tanggal Peminjaman</th>
             <th>Status</th>
-            <th>Aksi</th>
+            <th>Lihat Data</th>
+            <th>Konfirmasi Data</th>
+            <th>Hapus Data</th>
           </tr>
         </thead>
         <tbody>
@@ -19,7 +21,7 @@
           <td><?php echo e($collection->firstItem() + $i); ?></td>
           <td class="text-capitalize"><?php echo e($peminjaman->user->name); ?></td>
           <td class="text-capitalize"><?php echo e($peminjaman->tanggal); ?></td>
-          <th class="text-capitalize"><?php echo e($peminjaman->st); ?></th>
+          <th class="text-capitalize"><?php echo e($peminjaman->status); ?></th>
           <td>
           <a href="javascript:;" id="tombol-hapus" type="button" onclick="load_input('<?php echo e(route('office.borrow.show',$peminjaman->id)); ?>');" class="btn btn-info btn-icon-split btn-sm">
               <span class="icon text-white-50">
@@ -27,43 +29,47 @@
               </span>
               <span class="text">Lihat</span>
           </a>
-          <?php if($peminjaman->st == 'menunggu'): ?>
+        </td>
+        <td>
+          <?php if($peminjaman->status == 'menunggu'): ?>
             <a href="javascript:;" id="tombol-confirm" type="button" onclick="handle_confirm('<?php echo e(route('office.user-borrow.confirm',$peminjaman->id)); ?>');" class="btn btn-success btn-icon-split btn-sm">
               <span class="icon text-white-50">
                   <i class="fas fa-check"></i>
               </span>
               <span class="text">Konfirmasi Peminjaman</span>
-          <?php endif; ?>
-          <?php if($peminjaman->st == 'dikonfirmasi peminjaman'): ?>
+            </a>
+          <?php elseif($peminjaman->status == 'dikonfirmasi peminjaman'): ?>
           <a href="javascript:;" id="tombol-confirm" type="button" onclick="handle_confirm('<?php echo e(route('office.user-borrow.borrowed',$peminjaman->id)); ?>');" class="btn btn-primary btn-icon-split btn-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-check"></i>
             </span>
             <span class="text">Dipinjam</span>
           </a>
-          <?php endif; ?>
-          <?php if($peminjaman->st == 'menunggu perpanjangan'): ?>
+          <?php elseif($peminjaman->status == 'menunggu perpanjangan'): ?>
           <a href="javascript:;" id="tombol-confirm" type="button" onclick="handle_confirm('<?php echo e(route('office.user-borrow.acc',$peminjaman->id)); ?>');" class="btn btn-primary btn-icon-split btn-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-check"></i>
             </span>
             <span class="text">Setujui Perpanjangan</span>
           </a>
-          <?php endif; ?>
-          <?php if($peminjaman->st == 'dikonfirmasi pengembalian'): ?>
+          <?php elseif($peminjaman->status == 'dikonfirmasi pengembalian'): ?>
           <a href="javascript:;" id="tombol-confirm" type="button" onclick="handle_confirm('<?php echo e(route('office.user-borrow.return',$peminjaman->id)); ?>');" class="btn btn-primary btn-icon-split btn-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-check"></i>
             </span>
             <span class="text">Konfirmasi Pengembalian</span>
           </a>
+          <?php else: ?>
+            <span class="text">Tidak ada konfirmasi</span>
           <?php endif; ?>
-          <a href="javascript:;" id="tombol-hapus" type="button"  onclick="handle_delete('<?php echo e(route('office.borrow.destroy',$peminjaman->id)); ?>');" class="btn btn-danger btn-icon-split btn-sm">
-            <span class="icon text-white-50">
-                <i class="fas fa-trash"></i>
-            </span>
-            <span class="text">Hapus</span>
-          </a>
+          </td>
+          <td>
+            <a href="javascript:;" id="tombol-hapus" type="button"  onclick="handle_delete('<?php echo e(route('office.borrow.destroy',$peminjaman->id)); ?>');" class="btn btn-danger btn-icon-split btn-sm">
+              <span class="icon text-white-50">
+                  <i class="fas fa-trash"></i>
+              </span>
+              <span class="text">Hapus</span>
+            </a>
           </td>
           </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
